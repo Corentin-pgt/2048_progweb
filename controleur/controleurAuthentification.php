@@ -21,13 +21,12 @@ class ControleurAuthentification
         $this->vue->demandePseudo();
     }
 
-    function connexion(string $pseudo)
-    {/*
+    function connexion(string $pseudo, string $pwd)
+    {
         $userDAO = new UserDao();
-        $chatitemDAO = new ChatItemDao();
         if ($userDAO->exists($pseudo)) {
-            $this->vue->salon($chatitemDAO->findMessages(10), $pseudo);
-        } else $this->vue->demandePseudo();*/
+            //TODO
+        } else $this->vue->demandePseudo();
     }
 
 

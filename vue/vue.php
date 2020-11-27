@@ -9,14 +9,17 @@ class Vue
         <!DOCTYPE html>
         <html>
         <head>
-            <title>TD6: login form </title>
+            <title>2048: Le jeu du futur </title>
         </head>
         <body>
         <br>
         <br>
         <form action="index.php" method="post">
-            <label for="pseudo">Entrer votre pseudo: </label>
+            <label for="pseudo">Entrer votre pseudo : </label>
             <input type="text" name="pseudo" id="pseudo" required>
+            <br>
+            <label for="pwd">Entrer votre mot de passe : </label>
+            <input type="password" name="pwd" id="pwd" required>
             <br>
             <br>
             <input type="submit" name="soumettre" value="envoyer"/>
