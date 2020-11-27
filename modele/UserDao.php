@@ -41,15 +41,15 @@ class UserDao
      * @return true si le pseudo passé en pramètre correspond à un utilisateur dans la table utilisateur, false sinon
      * @throws TableAccesException si la requête SQL pose problème
      */
-    public function exists(string $pseudo): bool
+    public function exists(string $pseudo, string $hash_pwd): bool
     {
         try {
-            $statement = $this->connexion->prepare("select id from utilisateurs where pseudo=?;");
-            $statement->bindParam(1, $pseudoParam);
-            $pseudoParam = $pseudo;
+            $statement = $this->connexion->prepare("select pseudo from JOUEURS where pseudo=? and password=?;");
+            $statement->bindParam(1, $pseudo);
+            $statement->bindParam(2, $hash_pwd);
             $statement->execute();
             $result = $statement->fetch(PDO::FETCH_ASSOC);
-            if ($result["id"] != Null) {
+            if ($result["pseudo"] != Null) {
                 return true;
             } else {
                 return false;
@@ -58,6 +58,15 @@ class UserDao
             throw new SQLException("problème requête SQL sur la table utilisateurs");
 
         }
+    }
+
+    public function add(string $pseudo, string $pwd): void
+    {
+        $req = $this->db->prepare("INSERT INTO JOUEURS(pseudo, password) VALUES (:pseudo, :password)");
+        $req->execute(array(
+            "pseudo" => $pseudo,
+            "password" => $pwd.h
+        ));
     }
 }
 
