@@ -35,7 +35,7 @@ class Vue
         <?php
     }
 
-    function jeu()
+    function game()
     {
         ?>
         <!DOCTYPE html>

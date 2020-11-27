@@ -65,7 +65,7 @@ class UserDao
         $req = $this->db->prepare("INSERT INTO JOUEURS(pseudo, password) VALUES (:pseudo, :password)");
         $req->execute(array(
             "pseudo" => $pseudo,
-            "password" => $pwd.h
+            "password" => $pwd . h
         ));
     }
 }
