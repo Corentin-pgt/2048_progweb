@@ -1,8 +1,9 @@
 <?php
 require_once PATH_VUE . "/Vue.php";
 require_once PATH_MODELE . "/UserDao.php";
+require_once PATH_MODELE . "/GameDAO.php";
 require_once PATH_METIER . "/User.php";
-
+require_once PATH_CONTROLEUR . "/ControleurJeu.php";
 
 class ControleurAuthentification
 {
@@ -22,16 +23,20 @@ class ControleurAuthentification
     function connexion(string $pseudo, string $pwd)
     {
         $userDAO = new UserDao();
-        if ($userDAO->exists($pseudo, password_hash($pwd))) {
-            $this->vue->play();
+        if ($userDAO->exists($pseudo) && $userDAO->verifierMdp($pseudo, $pwd)) {
+            $ctrlJeu = new ControleurJeu();
+            $ctrlJeu->play($pseudo);
         } else $this->vue->demandePseudo();
     }
 
     function inscription(string $pseudo, string $pwd)
     {
         $userDAO = new UserDao();
-        $userDAO->add($pseudo, password_hash($pwd));
+        if (!$userDAO->exists($pseudo)) {
+            $userDAO->add($pseudo, password_hash($pwd, PASSWORD_DEFAULT));
+            $ctrlJeu = new ControleurJeu();
+            $ctrlJeu->play($pseudo);
+        } else $this->vue->demandePseudo();
     }
-
 
 }

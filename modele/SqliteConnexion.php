@@ -11,7 +11,6 @@ class SqliteConnexion{
 
 			//à la place utiliser une constante qui sera initialisée dans config/config.php
 			$dir = dirname(__DIR__);
-			echo $dir;
 			// pas de host, ni de user, ni de password 
 			$this->connexion = new PDO("sqlite:$dir/db2048.db");
 			$this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

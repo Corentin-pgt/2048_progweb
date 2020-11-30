@@ -1,8 +1,7 @@
 <?php
-session_start();
-
 require_once 'ControleurAuthentification.php';
 require_once 'ControleurJeu.php';
+session_start();
 
 class Routeur
 {
@@ -17,21 +16,14 @@ class Routeur
 
     public function routerRequete()
     {
-        if (isset($_SESSION["idPlayer"])) {
-            if (isset($_POST["connexion"])) {
-                $this->ctrlAuthentification->connexion($_POST["pseudo"], $_POST["pwd"]);
-            } else {
-                $this->ctrlAuthentification->inscription($_POST["pseudo"], $_POST["pwd"]);
-            }
+        if (isset($_SESSION["pseudo"])) {
+            $this->ctrlJeu->play($_SESSION["pseudo"]);
+        } else if (isset($_POST["connexion"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {
+            $this->ctrlAuthentification->connexion($_POST["pseudo"], $_POST["pwd"]);
+        } else if (isset($_POST["inscription"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {
+            $this->ctrlAuthentification->inscription($_POST["pseudo"], $_POST["pwd"]);
         } else {
             $this->ctrlAuthentification->accueil();
         }
-        /*
-    if(isset($_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["message"]) && !empty($_POST["pseudo"])){
-        $this->ctrlAuthentification->connexion($_POST["pseudo"], $_POST["pwd"]);
-    } else {
-        $this->ctrlAuthentification->accueil();
-    }
-        */
     }
 }

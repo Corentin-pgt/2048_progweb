@@ -56,7 +56,7 @@ class Vue
         <!DOCTYPE html>
         <html>
         <head>
-            <title>2048: Le jeu du futur </title>
+            <title>2048: Résultats </title>
         </head>
         <body>
 

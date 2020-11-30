@@ -23,17 +23,49 @@ class Game
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getPseudo()
     {
-        return $this->user;
+        return $this->pseudo;
     }
 
     /**
-     * @return mixed
+     * @param mixed $pseudo
      */
-    public function getState()
+    public function setPseudo($pseudo): void
     {
-        return $this->state;
+        $this->pseudo = $pseudo;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGagne(): int
+    {
+        return $this->gagne;
+    }
+
+    /**
+     * @param int $gagne
+     */
+    public function setGagne(int $gagne): void
+    {
+        $this->gagne = $gagne;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
+    /**
+     * @param int $score
+     */
+    public function setScore(int $score): void
+    {
+        $this->score = $score;
     }
 
 }

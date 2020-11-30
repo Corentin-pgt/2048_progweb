@@ -25,7 +25,7 @@ class UserDao
     public function findAllByPseudo(): array
     {
         try {
-            $statement = $this->connexion->query("SELECT pseudo from utilisateurs;");
+            $statement = $this->connexion->query("SELECT pseudo from JOUEURS;");
             $users = $statement->fetchAll(PDO::FETCH_CLASS, 'User');
             return ($users);
         } catch (PDOException $e) {
@@ -41,19 +41,28 @@ class UserDao
      * @return true si le pseudo passé en pramètre correspond à un utilisateur dans la table utilisateur, false sinon
      * @throws TableAccesException si la requête SQL pose problème
      */
-    public function exists(string $pseudo, string $hash_pwd): bool
+    public function exists(string $pseudo): bool
     {
         try {
-            $statement = $this->connexion->prepare("select pseudo from JOUEURS where pseudo=? and password=?;");
+            $statement = $this->connexion->prepare("select pseudo from JOUEURS where pseudo=?;");
             $statement->bindParam(1, $pseudo);
-            $statement->bindParam(2, $hash_pwd);
             $statement->execute();
             $result = $statement->fetch(PDO::FETCH_ASSOC);
-            if ($result["pseudo"] != Null) {
-                return true;
-            } else {
-                return false;
-            }
+            return $result != null;
+        } catch (PDOException $e) {
+            throw new SQLException("problème requête SQL sur la table utilisateurs");
+
+        }
+    }
+
+    public function verifierMdp(string $pseudo, string $pwd): bool
+    {
+        try {
+            $statement = $this->connexion->prepare("select password from JOUEURS where pseudo=?;");
+            $statement->bindParam(1, $pseudo);
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            return password_verify($pwd, $result["password"]);
         } catch (PDOException $e) {
             throw new SQLException("problème requête SQL sur la table utilisateurs");
 
@@ -62,10 +71,10 @@ class UserDao
 
     public function add(string $pseudo, string $pwd): void
     {
-        $req = $this->db->prepare("INSERT INTO JOUEURS(pseudo, password) VALUES (:pseudo, :password)");
+        $req = $this->connexion->prepare("INSERT INTO JOUEURS(pseudo, password) VALUES (:pseudo, :password)");
         $req->execute(array(
             "pseudo" => $pseudo,
-            "password" => $pwd . h
+            "password" => $pwd
         ));
     }
 }

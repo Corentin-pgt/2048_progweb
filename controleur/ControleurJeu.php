@@ -1,7 +1,9 @@
 <?php
+require_once PATH_VUE . "/Vue.php";
+require_once PATH_MODELE . "/GameDAO.php";
+require_once PATH_METIER . "/Game.php";
 
-
-class controleurJeu
+class ControleurJeu
 {
     private $vue;
     private $gameDAO;
@@ -12,16 +14,16 @@ class controleurJeu
         $this->gameDAO = new GameDAO();
     }
 
-    function play()
+    function play(string $pseudo)
     {
-        $this->vue->game();
-    }
-
-    function createGame(User $user)
-    {
-        $game = new Game($user);
-        $this->gameDAO->insert($game);
-        $this->vue->game();
+        $_SESSION["pseudo"] = $pseudo;
+        if ($this->gameDAO->inGame()) {
+            $this->vue->game();
+        } else {
+            $game = new Game($pseudo);
+            $this->gameDAO->insert($game);
+            $this->vue->game();
+        }
     }
 
 }
