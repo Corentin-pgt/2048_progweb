@@ -10,7 +10,6 @@ class Vue
         <html>
         <head>
             <title>2048: Le jeu du futur </title>
-            <link rel="stylesheet" href="css/style.css">
         </head>
         <body>
         <br>
