@@ -7,7 +7,7 @@ class Vue
     {
         ?>
         <!DOCTYPE html>
-        <html>
+        <html lang="fr">
         <head>
             <title>2048: Le jeu du futur </title>
         </head>
@@ -39,7 +39,7 @@ class Vue
     {
         ?>
         <!DOCTYPE html>
-        <html>
+        <html lang="fr">
         <head>
             <title>2048: Le jeu ! </title>
         </head>
@@ -54,7 +54,7 @@ class Vue
     {
         ?>
         <!DOCTYPE html>
-        <html>
+        <html lang="fr">
         <head>
             <title>2048: Résultats </title>
         </head>

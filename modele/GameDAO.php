@@ -28,4 +28,22 @@ class GameDAO
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result != null ? $result["id"] : null;
     }
+
+    public function getScore($id){
+        $statement = $this->db->prepare("select score from PARTIES where id=?;");
+        $statement->bindParam(1, $id);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result["score"];
+    }
+
+    public function setScore($id, $score){
+        $statement = $this->db->prepare("update PARTIES set score=? where id=?;");
+        $statement->bindParam(1, $score);
+        $statement->bindParam(2, $id);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result["score"];
+    }
+
 }
