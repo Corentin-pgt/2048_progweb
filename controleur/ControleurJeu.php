@@ -17,7 +17,7 @@ class ControleurJeu
     function play(string $pseudo)
     {
         $_SESSION["pseudo"] = $pseudo;
-        if ($this->gameDAO->inGame()) {
+        if ($this->gameDAO->inGame() != null) {
             $this->vue->game();
         } else {
             $game = new Game($pseudo);

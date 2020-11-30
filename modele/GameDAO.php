@@ -26,6 +26,6 @@ class GameDAO
         $statement->bindParam(1, $pseudo);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result == null ? $result["id"] : null;
+        return $result != null ? $result["id"] : null;
     }
 }
