@@ -14,15 +14,14 @@ class ControleurJeu
         $this->gameDAO = new GameDAO();
     }
 
-    function play(string $pseudo)
+    function play(string $pseudo, string $direction)
     {
         $_SESSION["pseudo"] = $pseudo;
         if ($this->gameDAO->inGame() != null) {
-            if (isset($_SESSION["direction"]) && !empty($_SESSION["direction"])) {
+            if ($direction != "rien") {
                 $grille = $_SESSION["grille"];
                 $l = 0;
 
-                $direction = $_SESSION["direction"];
                 switch ($direction) {
                     case "haut":
                         $k1 = $this->retasseHaut($grille);
@@ -79,7 +78,7 @@ class ControleurJeu
                         $dispo[$row_random][$col_random] = $value_random * 2;
                     } catch (Exception $e) {}
                 }
-                $_SESSION = $grille;
+                $_SESSION["grille"] = $grille;
                 $this->vue->game();
             } else $this->vue->game();
         } else {

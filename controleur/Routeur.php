@@ -17,7 +17,7 @@ class Routeur
     public function routerRequete()
     {
         if (isset($_SESSION["pseudo"])) {
-            $this->ctrlJeu->play($_SESSION["pseudo"]);
+            $this->ctrlJeu->play($_SESSION["pseudo"], (isset($_GET["direction"])) ? $_GET["direction"] : "rien");
         } else if (isset($_POST["connexion"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {
             $this->ctrlAuthentification->connexion($_POST["pseudo"], $_POST["pwd"]);
         } else if (isset($_POST["inscription"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {

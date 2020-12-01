@@ -25,7 +25,7 @@ class ControleurAuthentification
         $userDAO = new UserDao();
         if ($userDAO->exists($pseudo) && $userDAO->verifierMdp($pseudo, $pwd)) {
             $ctrlJeu = new ControleurJeu();
-            $ctrlJeu->play($pseudo);
+            $ctrlJeu->play($pseudo, "rien");
         } else $this->vue->demandePseudo();
     }
 
@@ -35,7 +35,7 @@ class ControleurAuthentification
         if (!$userDAO->exists($pseudo)) {
             $userDAO->add($pseudo, password_hash($pwd, PASSWORD_DEFAULT));
             $ctrlJeu = new ControleurJeu();
-            $ctrlJeu->play($pseudo);
+            $ctrlJeu->play($pseudo, "rien");
         } else $this->vue->demandePseudo();
     }
 
