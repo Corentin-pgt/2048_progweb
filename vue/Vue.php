@@ -18,7 +18,7 @@ class Vue
             <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
         </head>
         <body>
-        <center><img src="assets/icon.png"></center>
+        <center><img class="title-screen" src="assets/icon.png"></center>
         <form class="login" action="index.php" method="post">
             <input type="text" name="pseudo" id="pseudo" placeholder="Username" required>
             <input type="password" name="pwd" id="pwd" placeholder="Password" required>
@@ -51,6 +51,14 @@ class Vue
             $score = $_SESSION["score"];
             ?>
             <div class="content">
+                <div class="id">
+                    <img class="game-screen" src="assets/icon.png">
+                    <div class="pseudo">
+                        <p><strong><i class="fas fa-user"></i> : </strong><?php echo($pseudo) ?></p>
+                    </div><div class="score">
+                        <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
+                    </div>
+                </div>
                 <div class="grid">
                     <div class="row1">
                         <div class="col1"><p><?php echo($grille[0][0]); ?></p></div>
@@ -76,12 +84,6 @@ class Vue
                         <div class="col3"><p><?php echo($grille[3][2]); ?></p></div>
                         <div class="col4"><p><?php echo($grille[3][3]); ?></p></div>
                     </div>
-                </div>
-                <div class="pseudo">
-                    <p><strong><i class="fas fa-user"></i> : </strong><?php echo($pseudo) ?></p>
-                </div>
-                <div class="score">
-                    <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
                 </div>
             </div>
         </body>
