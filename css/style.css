@@ -39,7 +39,7 @@
 .login::before {
     left: 40%;
     bottom: -130%;
-    background-color: rgba(69, 105, 144, 0.15);
+    background-color: rgba(121, 121, 121, 0.15);
     -webkit-animation: wawes 6s infinite linear;
     -moz-animation: wawes 6s infinite linear;
     animation: wawes 6s infinite linear;
@@ -47,7 +47,7 @@
 .login::after {
     left: 35%;
     bottom: -125%;
-    background-color: rgba(0, 222, 255, 0.2);
+    background-color: rgba(40, 40, 40, 0.2);
     -webkit-animation: wawes 7s infinite;
     -moz-animation: wawes 7s infinite;
     animation: wawes 7s infinite;
@@ -60,7 +60,7 @@
     background: #f3f3f3;
     width: 100%;
     border: 0;
-    padding: 10px 10px;
+    padding: 10px;
     margin: 15px -10px;
     box-shadow: 5px 10px 10px rgba(52, 52, 52, 0.2);
 }
@@ -165,11 +165,16 @@
 
 .logout {
     width: auto;
-    margin-left: 195px;
+    /*margin-left: 194px;*/
+}
+
+.back {
+    width: auto;
+    margin-left: 130px;
 }
 
 .up {
-    margin-right: 353px;
+    margin-right: 354px;
 }
 
 .controls div {
@@ -221,6 +226,7 @@ button:after {
 }
 button:focus, button:hover {
     background: #fb512e;
+    cursor: pointer;
 }
 button:active:after {
     width: 200px;

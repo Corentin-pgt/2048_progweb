@@ -26,12 +26,12 @@ class Vue
         </div>
         <center><div id="title-screen"><img class="title-screen" src="assets/icon.png"></div></center>
         <form class="login" action="index.php" method="post">
-            <input type="text" name="pseudo" id="pseudo" placeholder="Username" required>
+            <p>Veuillez vous connecter pour commencer le jeu.</p>
+            <input type="text" name="pseudo" id="pseudo" placeholder="Username" required autofocus>
             <input type="password" name="pwd" id="pwd" placeholder="Password" required>
             <input type="submit" name="connexion" value="Login" class="button"/>
             <input type="submit" name="inscription" value="Sign in" class="button"/>
         </form>
-
         </body>
         </html>
         <?php
@@ -111,6 +111,13 @@ class Vue
                                 <button name="direction" value="droite"><i class="fas fa-arrow-alt-circle-right"></i></button>
                             </form>
                         </div>
+                        <div class="back">
+                            <form action="index" method="GET">
+                                <button name="precedent" value="true">
+                                    <i class="fas fa-undo-alt"></i>
+                                </button>
+                            </form>
+                        </div>
                         <div class="logout">
                             <form action="index" method="GET">
                                 <button name="deconnexion" value="true">
@@ -119,7 +126,6 @@ class Vue
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </body>
