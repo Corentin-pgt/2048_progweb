@@ -18,13 +18,20 @@ class Vue
             <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
         </head>
         <body>
-        <center><img class="title-screen" src="assets/icon.png"></center>
+        <div class="animation-wrapper">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+        </div>
+        <center><div id="title-screen"><img class="title-screen" src="assets/icon.png"></div></center>
         <form class="login" action="index.php" method="post">
             <input type="text" name="pseudo" id="pseudo" placeholder="Username" required>
             <input type="password" name="pwd" id="pwd" placeholder="Password" required>
             <input type="submit" name="connexion" value="Login" class="button"/>
             <input type="submit" name="inscription" value="Sign in" class="button"/>
         </form>
+
         </body>
         </html>
         <?php
@@ -45,6 +52,12 @@ class Vue
             <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
         </head>
         <body>
+        <div class="animation-wrapper">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+        </div>
             <?php
             $grille = $_SESSION["grille"];
             $pseudo = $_SESSION["pseudo"];
@@ -60,30 +73,53 @@ class Vue
                     </div>
                 </div>
                 <div class="grid">
-                    <div class="row1">
-                        <div class="col1"><p><?php echo($grille[0][0]); ?></p></div>
-                        <div class="col2"><p><?php echo($grille[0][1]); ?></p></div>
-                        <div class="col3"><p><?php echo($grille[0][2]); ?></p></div>
-                        <div class="col4"><p><?php echo($grille[0][3]); ?></p></div>
+                    <?php
+                    for ($i = 0; $i < 4; $i++) {
+                        echo "<div class=\"row".($i + 1)."\">\n";
+                        for ($j = 0; $j < 4; $j++) {
+                            echo "<div class=\"col".($j + 1)."\">\n";
+                            echo "<p>";
+                            echo $grille[$i][$j] == 0 ? "" : $grille[$i][$j];
+                            echo "</p>\n";
+                            echo "</div>\n";
+                        }
+                        echo "</div>\n";
+                    }
+                    ?>
+                </div>
+                <div class="controls">
+                    <div id="row1">
+                        <div class="up">
+                            <form action="index.php" method="GET">
+                                <button name="direction" value="haut"><i class="fas fa-arrow-alt-circle-up"></i></button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="row2">
-                        <div class="col1"><p><?php echo($grille[1][0]); ?></p></div>
-                        <div class="col2"><p><?php echo($grille[1][1]); ?></p></div>
-                        <div class="col3"><p><?php echo($grille[1][2]); ?></p></div>
-                        <div class="col4"><p><?php echo($grille[1][3]); ?></p></div>
+                    <div id="row2">
+                        <div class="left">
+                            <form action="index.php" method="GET">
+                                <button name="direction" value="gauche"><i class="fas fa-arrow-alt-circle-left"></i></button>
+                            </form>
+                        </div>
+                        <div class="down">
+                            <form action="index.php" method="GET">
+                                <button name="direction" value="bas"><i class="fas fa-arrow-alt-circle-down"></i></button>
+                            </form>
+                        </div>
+                        <div class="right">
+                            <form action="index.php" method="GET">
+                                <button name="direction" value="droite"><i class="fas fa-arrow-alt-circle-right"></i></button>
+                            </form>
+                        </div>
+                        <div class="logout">
+                            <form action="index" method="GET">
+                                <button name="deconnexion" value="true">
+                                    QUIT <i class="fas fa-sign-out-alt"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="row3">
-                        <div class="col1"><p><?php echo($grille[2][0]); ?></p></div>
-                        <div class="col2"><p><?php echo($grille[2][1]); ?></p></div>
-                        <div class="col3"><p><?php echo($grille[2][2]); ?></p></div>
-                        <div class="col4"><p><?php echo($grille[2][3]); ?></p></div>
-                    </div>
-                    <div class="row4">
-                        <div class="col1"><p><?php echo($grille[3][0]); ?></p></div>
-                        <div class="col2"><p><?php echo($grille[3][1]); ?></p></div>
-                        <div class="col3"><p><?php echo($grille[3][2]); ?></p></div>
-                        <div class="col4"><p><?php echo($grille[3][3]); ?></p></div>
-                    </div>
+
                 </div>
             </div>
         </body>
