@@ -210,7 +210,7 @@ class ControleurJeu
     private function additionneHaut($grille)
     {
         $score = 0;
-        for ($i = 0; $i < 4; $i++)
+        for ($i = 0; $i < 3; $i++)
             for ($j = 0; $j < 4; $j++)
                 if ($grille[$i][$j] == $grille[$i + 1][$j]) {
                     $grille[$i][$j] = $grille[$i][$j] + $grille[$i + 1][$j];
