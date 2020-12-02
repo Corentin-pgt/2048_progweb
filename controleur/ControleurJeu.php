@@ -19,10 +19,10 @@ class ControleurJeu
         $_SESSION["pseudo"] = $pseudo;
         if ($this->gameDAO->inGame() == null) {
             $grille = array(
-                array("", "", "", ""),
-                array("", "", "", ""),
-                array("", "", "", ""),
-                array("", "", "", "")
+                array(0, 0, 0, 0),
+                array(0, 0, 0, 0),
+                array(0, 0, 0, 0),
+                array(0, 0, 0, 0)
             );
             try {
                 $row_random1 = random_int(0, 3);
@@ -185,7 +185,7 @@ class ControleurJeu
     {
         $score = 0;
         for ($i = 0; $i < 4; $i++)
-            for ($j = 4; $j > 0; $j--)
+            for ($j = 3; $j > 0; $j--)
                 if ($grille[$i][$j] == $grille[$i][$j - 1]) {
                     $grille[$i][$j] = $grille[$i][$j] + $grille[$i][$j - 1];
                     $score += $grille[$i][$j];
