@@ -51,13 +51,7 @@ class Vue
             <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
         </head>
-        <body>
-        <div class="animation-wrapper">
-            <div class="particle particle-1"></div>
-            <div class="particle particle-2"></div>
-            <div class="particle particle-3"></div>
-            <div class="particle particle-4"></div>
-        </div>
+        <body style="background-image: url('assets/background.png');">
             <?php
             $grille = $_SESSION["grille"];
             $pseudo = $_SESSION["pseudo"];
