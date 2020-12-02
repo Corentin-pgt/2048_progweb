@@ -53,22 +53,22 @@ class Vue
                     <div class="col4"><?php echo($grille[0][3]); ?></div>
                 </div>
                 <div class="row2">
-                    <div class="col1"><?php echo($grille[0][0]); ?></div>
-                    <div class="col2"><?php echo($grille[0][1]); ?></div>
-                    <div class="col3"><?php echo($grille[0][2]); ?></div>
-                    <div class="col4"><?php echo($grille[0][3]); ?></div>
+                    <div class="col1"><?php echo($grille[1][0]); ?></div>
+                    <div class="col2"><?php echo($grille[1][1]); ?></div>
+                    <div class="col3"><?php echo($grille[1][2]); ?></div>
+                    <div class="col4"><?php echo($grille[1][3]); ?></div>
                 </div>
                 <div class="row3">
-                    <div class="col1"><?php echo($grille[0][0]); ?></div>
-                    <div class="col2"><?php echo($grille[0][1]); ?></div>
-                    <div class="col3"><?php echo($grille[0][2]); ?></div>
-                    <div class="col4"><?php echo($grille[0][3]); ?></div>
+                    <div class="col1"><?php echo($grille[2][0]); ?></div>
+                    <div class="col2"><?php echo($grille[2][1]); ?></div>
+                    <div class="col3"><?php echo($grille[2][2]); ?></div>
+                    <div class="col4"><?php echo($grille[2][3]); ?></div>
                 </div>
                 <div class="row4">
-                    <div class="col1"><?php echo($grille[0][0]); ?></div>
-                    <div class="col2"><?php echo($grille[0][1]); ?></div>
-                    <div class="col3"><?php echo($grille[0][2]); ?></div>
-                    <div class="col4"><?php echo($grille[0][3]); ?></div>
+                    <div class="col1"><?php echo($grille[3][0]); ?></div>
+                    <div class="col2"><?php echo($grille[3][1]); ?></div>
+                    <div class="col3"><?php echo($grille[3][2]); ?></div>
+                    <div class="col4"><?php echo($grille[3][3]); ?></div>
                 </div>
             </div>
         </body>
