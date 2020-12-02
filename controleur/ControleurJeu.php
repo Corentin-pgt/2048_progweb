@@ -33,47 +33,46 @@ class ControleurJeu
                 $grille[$row_random2][$col_random2] = 2;
             } catch (Exception $e) {
             }
-            $_SESSION["grille"] = $grille;
             $game = new Game($pseudo);
             $this->gameDAO->insert($game);
+            $_SESSION["grille"] = $grille;
             $_SESSION["score"] = $this->gameDAO->getScore($this->gameDAO->inGame());
             $this->vue->game();
         } else {
             if ($direction == "rien") {
                 $this->vue->game();
             } else {
-                $grille = $_SESSION["grille"];
                 $l = 0;
 
                 switch ($direction) {
                     case "haut":
-                        $k1 = $this->retasseHaut($grille);
-                        $k2 = $this->additionneHaut($grille);
-                        $k3 = $this->retasseHaut($grille);
+                        $k1 = $this->retasseHaut($_SESSION["grille"]);
+                        $k2 = $this->additionneHaut($_SESSION["grille"]);
+                        $k3 = $this->retasseHaut($_SESSION["grille"]);
                         $id = $this->gameDAO->inGame();
                         $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
                         $l = $k1 + $k2 + $k3;
                         break;
                     case "gauche":
-                        $k1 = $this->retasseGauche($grille);
-                        $k2 = $this->additionneGauche($grille);
-                        $k3 = $this->retasseGauche($grille);
+                        $k1 = $this->retasseGauche($_SESSION["grille"]);
+                        $k2 = $this->additionneGauche($_SESSION["grille"]);
+                        $k3 = $this->retasseGauche($_SESSION["grille"]);
                         $id = $this->gameDAO->inGame();
                         $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
                         $l = $k1 + $k2 + $k3;
                         break;
                     case "bas":
-                        $k1 = $this->retasseBas($grille);
-                        $k2 = $this->additionnebas($grille);
-                        $k3 = $this->retasseBas($grille);
+                        $k1 = $this->retasseBas($_SESSION["grille"]);
+                        $k2 = $this->additionnebas($_SESSION["grille"]);
+                        $k3 = $this->retasseBas($_SESSION["grille"]);
                         $id = $this->gameDAO->inGame();
                         $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
                         $l = $k1 + $k2 + $k3;
                         break;
                     case "droite":
-                        $k1 = $this->retasseDroite($grille);
-                        $k2 = $this->additionneDroite($grille);
-                        $k3 = $this->retasseDroite($grille);
+                        $k1 = $this->retasseDroite($_SESSION["grille"]);
+                        $k2 = $this->additionneDroite($_SESSION["grille"]);
+                        $k3 = $this->retasseDroite($_SESSION["grille"]);
                         $id = $this->gameDAO->inGame();
                         $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
                         $l = $k1 + $k2 + $k3;
@@ -84,7 +83,7 @@ class ControleurJeu
                     $cpt = 0;
                     for ($row = 0; $row < 4; $row++) {
                         for ($col = 0; $col < 4; $col++) {
-                            if ($grille[$row][$col] == "") {
+                            if ($_SESSION["grille"][$row][$col] == "") {
                                 $dispo[$cpt][0] = $row;
                                 $dispo[$cpt][1] = $col;
                                 $cpt++;
@@ -102,7 +101,6 @@ class ControleurJeu
                     } catch (Exception $e) {
                     }
                 }
-                $_SESSION["grille"] = $grille;
                 $_SESSION["score"] = $this->gameDAO->getScore($this->gameDAO->inGame());
                 $this->vue->game();
             }
