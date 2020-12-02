@@ -17,8 +17,31 @@ class ControleurJeu
     function play(string $pseudo, string $direction)
     {
         $_SESSION["pseudo"] = $pseudo;
-        if ($this->gameDAO->inGame() != null) {
-            if ($direction != "rien") {
+        if ($this->gameDAO->inGame() == null) {
+            $grille = array(
+                array("", "", "", ""),
+                array("", "", "", ""),
+                array("", "", "", ""),
+                array("", "", "", "")
+            );
+            try {
+                $row_random1 = random_int(0, 3);
+                $col_random1 = random_int(0, 3);
+                $row_random2 = random_int(0, 3);
+                $col_random2 = random_int(0, 3);
+                $grille[$row_random1][$col_random1] = 2;
+                $grille[$row_random2][$col_random2] = 2;
+            } catch (Exception $e) {
+            }
+            $_SESSION["grille"] = $grille;
+
+            $game = new Game($pseudo);
+            $this->gameDAO->insert($game);
+            $this->vue->game();
+        } else {
+            if ($direction == "rien") {
+                $this->vue->game();
+            } else {
                 $grille = $_SESSION["grille"];
                 $l = 0;
 
@@ -76,31 +99,12 @@ class ControleurJeu
                         $col_random = random_int(0, sizeof($dispo));
                         $value_random = random_int(1, 2);
                         $dispo[$row_random][$col_random] = $value_random * 2;
-                    } catch (Exception $e) {}
+                    } catch (Exception $e) {
+                    }
                 }
                 $_SESSION["grille"] = $grille;
                 $this->vue->game();
-            } else $this->vue->game();
-        } else {
-            $grille = array(
-                array("", "", "", ""),
-                array("", "", "", ""),
-                array("", "", "", ""),
-                array("", "", "", "")
-            );
-            try {
-                $row_random1 = random_int(0, 3);
-                $col_random1 = random_int(0, 3);
-                $row_random2 = random_int(0, 3);
-                $col_random2 = random_int(0, 3);
-                $grille[$row_random1][$col_random1] = 2;
-                $grille[$row_random2][$col_random2] = 2;
-            } catch (Exception $e) {}
-            $_SESSION["grille"] = $grille;
-
-            $game = new Game($pseudo);
-            $this->gameDAO->insert($game);
-            $this->vue->game();
+            }
         }
     }
 
