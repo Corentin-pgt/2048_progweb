@@ -1,9 +1,15 @@
 body {
-    background-color: #f45b69;
+    background-color: #ff6773;
     font-family: "Asap", sans-serif;
+}
+.title-screen {
+    margin: 2%;
+    border-radius: 50px;
+    box-shadow: 5px 10px 10px rgba(52, 52, 52, 0.2);
 }
 
 .login {
+    margin-top: 3%;
     overflow: hidden;
     background-color: #fafafa;
     padding: 40px 30px 30px 30px;
@@ -20,7 +26,7 @@ body {
     -webkit-transition: -webkit-transform 300ms, box-shadow 300ms;
     -moz-transition: -moz-transform 300ms, box-shadow 300ms;
     transition: transform 300ms, box-shadow 300ms;
-    box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
+    box-shadow: 5px 10px 10px rgba(52, 52, 52, 0.2);
 }
 .login::before, .login::after {
     content: "";
@@ -41,7 +47,7 @@ body {
 .login::after {
     left: 35%;
     bottom: -125%;
-    background-color: rgba(2, 128, 144, 0.2);
+    background-color: rgba(0, 222, 255, 0.2);
     -webkit-animation: wawes 7s infinite;
     -moz-animation: wawes 7s infinite;
     animation: wawes 7s infinite;
@@ -56,14 +62,27 @@ body {
     border: 0;
     padding: 10px 10px;
     margin: 15px -10px;
-    box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
+    box-shadow: 5px 10px 10px rgba(52, 52, 52, 0.2);
 }
+.grid div div {
+    text-align: center;
+    font-family: "Asap", sans-serif;
+    font-size: 37px;
+    background: #fff;
+    height: 120px;
+    width: 120px;
+    border: solid 3px white;
+    border-radius: 5px;
+    margin: 5px;
+    box-shadow: 5px 8px 8px rgba(52, 52, 52, 0.2);
+}
+
 .login > .button {
     font-family: "Asap", sans-serif;
     cursor: pointer;
     display: inline-block;
     margin: 20px;
-    color: #fff;
+    color: #f3f3f3;
     font-size: 16px;
     text-transform: uppercase;
     width: 80px;
@@ -81,14 +100,6 @@ body {
     background-color: #f24353;
 }
 
-.grid div div {
-    background: #eaeaea;
-    height: 120px;
-    width: 120px;
-    border: solid 2px white;
-    border-radius: 5px;
-    margin: 5px;
-}
 
 .row1 {
     display: flex;
@@ -108,6 +119,47 @@ body {
 .row4 {
     display: flex;
     justify-content: center;
+}
+
+.content {
+    margin-top: 3%;
+    overflow: hidden;
+    background-color: rgb(246, 246, 246);
+    padding: 40px 30px 30px 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 600px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 8px 8px rgba(52, 52, 52, 0.2);
+}
+
+.game-screen {
+    max-width: 100px;
+    max-height: 100px;
+    box-shadow: 5px 10px 10px rgba(52, 52, 52, 0.2);
+    border-radius: 15px;
+    margin-right: 155px;
+    margin-bottom: 20px;
+}
+
+.id {
+    display: flex;
+    justify-content: center;
+}
+
+.id div {
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 25px;
 }
 
 @-webkit-keyframes wawes {
