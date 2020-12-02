@@ -81,6 +81,35 @@ body {
     background-color: #f24353;
 }
 
+.grid div div {
+    background: #eaeaea;
+    height: 120px;
+    width: 120px;
+    border: solid 2px white;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.row1 {
+    display: flex;
+    justify-content: center;
+}
+
+.row2 {
+    display: flex;
+    justify-content: center;
+}
+
+.row3 {
+    display: flex;
+    justify-content: center;
+}
+
+.row4 {
+    display: flex;
+    justify-content: center;
+}
+
 @-webkit-keyframes wawes {
     from {
         -webkit-transform: rotate(0);
