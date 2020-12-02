@@ -34,9 +34,9 @@ class ControleurJeu
             } catch (Exception $e) {
             }
             $_SESSION["grille"] = $grille;
-
             $game = new Game($pseudo);
             $this->gameDAO->insert($game);
+            $_SESSION["score"] = $this->gameDAO->getScore($this->gameDAO->inGame());
             $this->vue->game();
         } else {
             if ($direction == "rien") {
@@ -103,6 +103,7 @@ class ControleurJeu
                     }
                 }
                 $_SESSION["grille"] = $grille;
+                $_SESSION["score"] = $this->gameDAO->getScore($this->gameDAO->inGame());
                 $this->vue->game();
             }
         }
