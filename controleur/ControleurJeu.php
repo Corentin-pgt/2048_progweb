@@ -196,7 +196,7 @@ class ControleurJeu
     {
         $score = 0;
         for ($i = 0; $i < 4; $i++)
-            for ($j = 0; $j < 4; $j++)
+            for ($j = 0; $j < 3; $j++)
                 if ($grille[$i][$j] == $grille[$i][$j + 1]) {
                     $grille[$i][$j] = $grille[$i][$j] + $grille[$i][$j + 1];
                     $score += $grille[$i][$j];
