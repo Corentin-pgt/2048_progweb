@@ -39,4 +39,8 @@ class ControleurAuthentification
         } else $this->vue->demandePseudo();
     }
 
+    function deconnexion(){
+        session_destroy();
+        header("Location: index.php");
+    }
 }

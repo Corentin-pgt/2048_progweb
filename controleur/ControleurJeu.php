@@ -17,7 +17,7 @@ class ControleurJeu
     function play(string $pseudo, string $direction)
     {
         $_SESSION["pseudo"] = $pseudo;
-        if ($this->gameDAO->inGame() == null) {
+        if ($this->gameDAO->getId() == 0) {
             $grille = array(
                 array(0, 0, 0, 0),
                 array(0, 0, 0, 0),
@@ -27,8 +27,10 @@ class ControleurJeu
             try {
                 $row_random1 = random_int(0, 3);
                 $col_random1 = random_int(0, 3);
-                $row_random2 = random_int(0, 3);
-                $col_random2 = random_int(0, 3);
+                do {
+                    $row_random2 = random_int(0, 3);
+                    $col_random2 = random_int(0, 3);
+                } while ($row_random1 == $row_random2 && $col_random1 == $col_random2);
                 $grille[$row_random1][$col_random1] = 2;
                 $grille[$row_random2][$col_random2] = 2;
             } catch (Exception $e) {
@@ -36,77 +38,118 @@ class ControleurJeu
             $game = new Game($pseudo);
             $this->gameDAO->insert($game);
             $_SESSION["grille"] = $grille;
-            $_SESSION["score"] = $this->gameDAO->getScore($this->gameDAO->inGame());
+            $_SESSION["score"] = 0;
+            setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
+            setcookie("score", json_encode($_SESSION["score"]), time() + 365 * 24 * 3600);
+            setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
+            setcookie("score_precedent", json_encode($_SESSION["score"]));
             $this->vue->game();
         } else {
-            if ($direction == "rien") {
-                $this->vue->game();
-            } else {
-                $l = 0;
+            $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
+            $score_precedent = json_decode($_COOKIE["score_precedent"], true);
+            if (!isset($_GET["precedent"]) || $_GET["precedent"] != true) {
+                $_SESSION["grille"] = json_decode($_COOKIE["grille"], true);
+                $_SESSION["score"] = json_decode($_COOKIE["score"], true);
+                setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
+                setcookie("score_precedent", json_encode($_COOKIE["score"]), time() + 365 * 24 * 3600);
+                if ($direction == "rien") {
+                    $this->vue->game();
+                } else {
+                    $l = 0;
 
-                switch ($direction) {
-                    case "haut":
-                        $k1 = $this->retasseHaut($_SESSION["grille"]);
-                        $k2 = $this->additionneHaut($_SESSION["grille"]);
-                        $k3 = $this->retasseHaut($_SESSION["grille"]);
-                        $id = $this->gameDAO->inGame();
-                        $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
-                        $l = $k1 + $k2 + $k3;
-                        break;
-                    case "gauche":
-                        $k1 = $this->retasseGauche($_SESSION["grille"]);
-                        $k2 = $this->additionneGauche($_SESSION["grille"]);
-                        $k3 = $this->retasseGauche($_SESSION["grille"]);
-                        $id = $this->gameDAO->inGame();
-                        $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
-                        $l = $k1 + $k2 + $k3;
-                        break;
-                    case "bas":
-                        $k1 = $this->retasseBas($_SESSION["grille"]);
-                        $k2 = $this->additionnebas($_SESSION["grille"]);
-                        $k3 = $this->retasseBas($_SESSION["grille"]);
-                        $id = $this->gameDAO->inGame();
-                        $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
-                        $l = $k1 + $k2 + $k3;
-                        break;
-                    case "droite":
-                        $k1 = $this->retasseDroite($_SESSION["grille"]);
-                        $k2 = $this->additionneDroite($_SESSION["grille"]);
-                        $k3 = $this->retasseDroite($_SESSION["grille"]);
-                        $id = $this->gameDAO->inGame();
-                        $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
-                        $l = $k1 + $k2 + $k3;
-                        break;
-                }
-                if ($l > 0) {
+                    switch ($direction) {
+                        case "haut":
+                            $k1 = $this->retasseHaut($_SESSION["grille"], 1);
+                            $k2 = $this->additionneHaut($_SESSION["grille"], 1);
+                            $k3 = $this->retasseHaut($_SESSION["grille"], 1);
+                            $id = $this->gameDAO->getId();
+                            $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
+                            $l = $k1 + $k2 + $k3;
+                            break;
+                        case "gauche":
+                            $k1 = $this->retasseGauche($_SESSION["grille"], 1);
+                            $k2 = $this->additionneGauche($_SESSION["grille"], 1);
+                            $k3 = $this->retasseGauche($_SESSION["grille"], 1);
+                            $id = $this->gameDAO->getId();
+                            $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
+                            $l = $k1 + $k2 + $k3;
+                            break;
+                        case "bas":
+                            $k1 = $this->retasseBas($_SESSION["grille"], 1);
+                            $k2 = $this->additionnebas($_SESSION["grille"], 1);
+                            $k3 = $this->retasseBas($_SESSION["grille"], 1);
+                            $id = $this->gameDAO->getId();
+                            $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
+                            $l = $k1 + $k2 + $k3;
+                            break;
+                        case "droite":
+                            $k1 = $this->retasseDroite($_SESSION["grille"], 1);
+                            $k2 = $this->additionneDroite($_SESSION["grille"], 1);
+                            $k3 = $this->retasseDroite($_SESSION["grille"], 1);
+                            $id = $this->gameDAO->getId();
+                            $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
+                            $l = $k1 + $k2 + $k3;
+                            break;
+                    }
                     $dispo = null;
-                    $cpt = 0;
-                    for ($row = 0; $row < 4; $row++) {
-                        for ($col = 0; $col < 4; $col++) {
-                            if ($_SESSION["grille"][$row][$col] == "") {
-                                $dispo[$cpt][0] = $row;
-                                $dispo[$cpt][1] = $col;
-                                $cpt++;
+                    if ($l > 0) {
+                        $cpt = 0;
+                        for ($row = 0; $row < 4; $row++) {
+                            for ($col = 0; $col < 4; $col++) {
+                                if ($_SESSION["grille"][$row][$col] == 0) {
+                                    $dispo[$cpt][0] = $row;
+                                    $dispo[$cpt][1] = $col;
+                                    $cpt++;
+                                }
                             }
                         }
+                        try {
+                            $cell_random = random_int(0, sizeof($dispo) - 1);
+                            $value_random = random_int(1, 2);
+                            $_SESSION["grille"][$dispo[$cell_random][0]][$dispo[$cell_random][1]] = $value_random * 2;
+                        } catch (Exception $e) {
+                        }
+                        if (sizeof($dispo) == 1) {
+                            $copie = $_SESSION["grille"];
+                            $h1 = $this->retasseHaut($copie, 0);
+                            $h2 = $this->additionneHaut($copie, 0);
+                            $h3 = $this->retasseHaut($copie, 0);
+                            $g1 = $this->retasseGauche($copie, 0);
+                            $g2 = $this->additionneGauche($copie, 0);
+                            $g3 = $this->retasseGauche($copie, 0);
+                            $b1 = $this->retasseBas($copie, 0);
+                            $b2 = $this->additionnebas($copie, 0);
+                            $b3 = $this->retasseBas($copie, 0);
+                            $d1 = $this->retasseDroite($copie, 0);
+                            $d2 = $this->additionneDroite($copie, 0);
+                            $d3 = $this->retasseDroite($copie, 0);
+                            if ($h1 + $h2 + $h3 + $g1 + $g2 + $g3 + $b1 + $b2 + $b3 + $d1 + $d2 + $d3 == 0) {
+                                $this->vue->resultat();
+                            }
+                        }
+                    } else {
+                        setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
+                        setcookie("score_precedent", json_encode($score_precedent), time() + 365 * 24 * 3600);
                     }
-                    if (sizeof($dispo) == 0) {
-                        $this->vue->resultat();
-                    }
-                    try {
-                        $cell_random = random_int(0, sizeof($dispo));
-                        $value_random = random_int(1, 2);
-                        $_SESSION["grille"][$dispo[$cell_random][0]][$dispo[$cell_random][1]] = $value_random * 2;
-                    } catch (Exception $e) {
-                    }
+                    setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
+                    $score = $this->gameDAO->getScore($this->gameDAO->getId());
+                    setcookie("score", json_encode($score));
+                    $_SESSION["score"] = $score;
+                    $this->vue->game();
                 }
-                $_SESSION["score"] = $this->gameDAO->getScore($this->gameDAO->inGame());
+            } else {
+                $_SESSION["grille"] = $grille_precedente;
+                $_SESSION["score"] = $score_precedent;
+                setcookie("grille", json_encode($grille_precedente), time() + 365 * 24 * 3600);
+                setcookie("score", json_encode($score_precedent), time() + 365 * 24 * 3600);
+                setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
+                setcookie("score_precedent", json_encode($score_precedent), time() + 365 * 24 * 3600);
                 $this->vue->game();
             }
         }
     }
 
-    private function retasseDroite($grille)
+    private function retasseDroite($grille, $retour)
     {
         $l = 0;
         for ($i = 0; $i < 4; $i++) {
@@ -121,11 +164,13 @@ class ControleurJeu
                     $k--;
                 }
         }
-        $_SESSION["grille"] = $grille;
+        if ($retour == 1) {
+            $_SESSION["grille"] = $grille;
+        }
         return $l;
     }
 
-    private function retasseGauche($grille)
+    private function retasseGauche($grille, $retour)
     {
         $l = 0;
         for ($i = 0; $i < 4; $i++) {
@@ -140,11 +185,13 @@ class ControleurJeu
                     $k++;
                 }
         }
-        $_SESSION["grille"] = $grille;
+        if ($retour == 1) {
+            $_SESSION["grille"] = $grille;
+        }
         return $l;
     }
 
-    private function retasseHaut($grille)
+    private function retasseHaut($grille, $retour)
     {
         $l = 0;
         for ($j = 0; $j < 4; $j++) {
@@ -159,11 +206,13 @@ class ControleurJeu
                     $k++;
                 }
         }
-        $_SESSION["grille"] = $grille;
+        if ($retour == 1) {
+            $_SESSION["grille"] = $grille;
+        }
         return $l;
     }
 
-    private function retasseBas($grille)
+    private function retasseBas($grille, $retour)
     {
         $l = 0;
         for ($j = 0; $j < 4; $j++) {
@@ -178,11 +227,13 @@ class ControleurJeu
                     $k--;
                 }
         }
-        $_SESSION["grille"] = $grille;
+        if ($retour == 1) {
+            $_SESSION["grille"] = $grille;
+        }
         return $l;
     }
 
-    private function additionneDroite($grille)
+    private function additionneDroite($grille, $retour)
     {
         $score = 0;
         for ($i = 0; $i < 4; $i++) {
@@ -194,11 +245,13 @@ class ControleurJeu
                 }
             }
         }
-        $_SESSION["grille"] = $grille;
+        if ($retour == 1) {
+            $_SESSION["grille"] = $grille;
+        }
         return $score;
     }
 
-    private function additionneGauche($grille)
+    private function additionneGauche($grille, $retour)
     {
         $score = 0;
         for ($i = 0; $i < 4; $i++) {
@@ -210,11 +263,13 @@ class ControleurJeu
                 }
             }
         }
-        $_SESSION["grille"] = $grille;
+        if ($retour == 1) {
+            $_SESSION["grille"] = $grille;
+        }
         return $score;
     }
 
-    private function additionneHaut($grille)
+    private function additionneHaut($grille, $retour)
     {
         $score = 0;
         for ($i = 0; $i < 3; $i++) {
@@ -226,11 +281,13 @@ class ControleurJeu
                 }
             }
         }
-        $_SESSION["grille"] = $grille;
+        if ($retour == 1) {
+            $_SESSION["grille"] = $grille;
+        }
         return $score;
     }
 
-    private function additionnebas($grille)
+    private function additionnebas($grille, $retour)
     {
         $score = 0;
         for ($i = 3; $i > 0; $i--) {
@@ -242,7 +299,9 @@ class ControleurJeu
                 }
             }
         }
-        $_SESSION["grille"]=$grille;
+        if ($retour == 1) {
+            $_SESSION["grille"] = $grille;
+        }
         return $score;
     }
 

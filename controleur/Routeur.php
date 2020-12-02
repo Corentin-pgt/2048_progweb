@@ -16,6 +16,7 @@ class Routeur
 
     public function routerRequete()
     {
+        if (isset($_GET["deconnexion"]) && $_GET["deconnexion"]==true) $this->ctrlAuthentification->deconnexion();
         if (isset($_SESSION["pseudo"])) {
             $this->ctrlJeu->play($_SESSION["pseudo"], (isset($_GET["direction"])) ? $_GET["direction"] : "rien");
         } else if (isset($_POST["connexion"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {
