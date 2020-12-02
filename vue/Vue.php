@@ -46,10 +46,18 @@ class Vue
             $grille = $_SESSION["grille"];
             ?>
             <div class="grid">
-                <div class="row1"><?php echo($grille[0][0]) ?></div>
-                <div class="row2"></div>
-                <div class="row3"></div>
-                <div class="row4"></div>
+                <div class="row1">
+                    <?php echo($grille[0][0]); echo($grille[0][1]); echo($grille[0][2]); echo($grille[0][3]); ?>
+                </div>
+                <div class="row2">
+                    <?php echo($grille[1][0]); echo($grille[1][1]); echo($grille[1][2]); echo($grille[1][3]); ?>
+                </div>
+                <div class="row3">
+                    <?php echo($grille[2][0]); echo($grille[2][1]); echo($grille[2][2]); echo($grille[2][3]); ?>
+                </div>
+                <div class="row4">
+                    <?php echo($grille[3][0]); echo($grille[3][1]); echo($grille[3][2]); echo($grille[3][3]); ?>
+                </div>
             </div>
         </body>
         </html>
