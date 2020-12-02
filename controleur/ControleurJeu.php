@@ -38,20 +38,20 @@ class ControleurJeu
             $game = new Game($pseudo);
             $this->gameDAO->insert($game);
             $_SESSION["grille"] = $grille;
-            $_SESSION["score"] = 0;
+            $_SESSION["score"] = "0";
             setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
-            setcookie("score", json_encode($_SESSION["score"]), time() + 365 * 24 * 3600);
+            setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
-            setcookie("score_precedent", json_encode($_SESSION["score"]));
+            setcookie("score_precedent", $_SESSION["score"], time() + 365 * 24 * 3600);
             $this->vue->game();
         } else {
             $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
-            $score_precedent = json_decode($_COOKIE["score_precedent"], true);
+            $score_precedent = $_COOKIE["score_precedent"];
             if (!isset($_GET["precedent"]) || $_GET["precedent"] != true) {
                 $_SESSION["grille"] = json_decode($_COOKIE["grille"], true);
-                $_SESSION["score"] = json_decode($_COOKIE["score"], true);
+                $_SESSION["score"] = $_COOKIE["score"];
                 setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
-                setcookie("score_precedent", json_encode($_COOKIE["score"]), time() + 365 * 24 * 3600);
+                setcookie("score_precedent", $_COOKIE["score"], time() + 365 * 24 * 3600);
                 if ($direction == "rien") {
                     $this->vue->game();
                 } else {
@@ -129,21 +129,21 @@ class ControleurJeu
                         }
                     } else {
                         setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
-                        setcookie("score_precedent", json_encode($score_precedent), time() + 365 * 24 * 3600);
+                        setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
                     }
                     setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
                     $score = $this->gameDAO->getScore($this->gameDAO->getId());
-                    setcookie("score", json_encode($score));
                     $_SESSION["score"] = $score;
+                    setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
                     $this->vue->game();
                 }
             } else {
                 $_SESSION["grille"] = $grille_precedente;
                 $_SESSION["score"] = $score_precedent;
                 setcookie("grille", json_encode($grille_precedente), time() + 365 * 24 * 3600);
-                setcookie("score", json_encode($score_precedent), time() + 365 * 24 * 3600);
+                setcookie("score", $score_precedent, time() + 365 * 24 * 3600);
                 setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
-                setcookie("score_precedent", json_encode($score_precedent), time() + 365 * 24 * 3600);
+                setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
                 $this->vue->game();
             }
         }
