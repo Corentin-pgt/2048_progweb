@@ -43,4 +43,11 @@ class ControleurAuthentification
         session_destroy();
         header("Location: index.php");
     }
+
+    function recommencer(){
+        $gameDAO = new GameDAO();
+        $id = $gameDAO->getId();
+        $gameDAO->getScore($id)<="2048" ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
+        header("Location: index.php");
+    }
 }

@@ -18,7 +18,8 @@ class ControleurJeu
     {
         $_SESSION["pseudo"] = $pseudo;
         $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard();
-        if ($this->gameDAO->getId() == 0) {
+        $id = $this->gameDAO->getId();
+        if ($id == 0){
             $grille = array(
                 array(0, 0, 0, 0),
                 array(0, 0, 0, 0),

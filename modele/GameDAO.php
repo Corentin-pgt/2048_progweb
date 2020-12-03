@@ -37,7 +37,7 @@ class GameDAO
     public function getId(): int
     {
         $pseudo = $_SESSION["pseudo"];
-        $statement = $this->db->prepare("select id from PARTIES where pseudo=?;");
+        $statement = $this->db->prepare("select id from PARTIES where pseudo=? and gagne=0;");
         $statement->bindParam(1, $pseudo);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -62,4 +62,21 @@ class GameDAO
         //$result = $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getEtat($id): int
+    {
+        $statement = $this->db->prepare("select gagne from PARTIES where id=?;");
+        $statement->bindParam(1, $id);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result["gagne"];
+    }
+
+    public function setEtat($etat, $id)
+    {
+        $statement = $this->db->prepare("update PARTIES set gagne=? where id=?;");
+        $statement->bindParam(1, $etat);
+        $statement->bindParam(2, $id);
+        $statement->execute();
+        //$result = $statement->fetch(PDO::FETCH_ASSOC);
+    }
 }
