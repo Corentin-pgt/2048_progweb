@@ -43,10 +43,16 @@ class ControleurJeu
             setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
             setcookie("score_precedent", $_SESSION["score"], time() + 365 * 24 * 3600);
+
+            $result = $this->gameDAO->getLeaderboard();
+            $_SESSION["leaderboard"] = $result;
+            setcookie("leaderboard", json_encode($result), time() + 365 * 24 * 3600);
+
             $this->vue->game();
         } else {
             $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
             $score_precedent = $_COOKIE["score_precedent"];
+            $_SESSION["leaderboard"] = json_decode($_COOKIE["leaderboard"], true);
             if (!isset($_GET["precedent"]) || $_GET["precedent"] != true) {
                 $_SESSION["grille"] = json_decode($_COOKIE["grille"], true);
                 $_SESSION["score"] = $_COOKIE["score"];
@@ -109,20 +115,20 @@ class ControleurJeu
                             $_SESSION["grille"][$dispo[$cell_random][0]][$dispo[$cell_random][1]] = $value_random * 2;
                         } catch (Exception $e) {
                         }
-                        if (sizeof($dispo) == 1) {
-                            $copie = $_SESSION["grille"];
-                            $h1 = $this->retasseHaut($copie, 0);
-                            $h2 = $this->additionneHaut($copie, 0);
-                            $h3 = $this->retasseHaut($copie, 0);
-                            $g1 = $this->retasseGauche($copie, 0);
-                            $g2 = $this->additionneGauche($copie, 0);
-                            $g3 = $this->retasseGauche($copie, 0);
-                            $b1 = $this->retasseBas($copie, 0);
-                            $b2 = $this->additionnebas($copie, 0);
-                            $b3 = $this->retasseBas($copie, 0);
-                            $d1 = $this->retasseDroite($copie, 0);
-                            $d2 = $this->additionneDroite($copie, 0);
-                            $d3 = $this->retasseDroite($copie, 0);
+                        if (sizeof($dispo) <= 1) {
+
+                            $h1 = $this->retasseHaut($_SESSION["grille"], 0);
+                            $h2 = $this->additionneHaut($_SESSION["grille"], 0);
+                            $h3 = $this->retasseHaut($_SESSION["grille"], 0);
+                            $g1 = $this->retasseGauche($_SESSION["grille"], 0);
+                            $g2 = $this->additionneGauche($_SESSION["grille"], 0);
+                            $g3 = $this->retasseGauche($_SESSION["grille"], 0);
+                            $b1 = $this->retasseBas($_SESSION["grille"], 0);
+                            $b2 = $this->additionnebas($_SESSION["grille"], 0);
+                            $b3 = $this->retasseBas($_SESSION["grille"], 0);
+                            $d1 = $this->retasseDroite($_SESSION["grille"], 0);
+                            $d2 = $this->additionneDroite($_SESSION["grille"], 0);
+                            $d3 = $this->retasseDroite($_SESSION["grille"], 0);
                             if ($h1 + $h2 + $h3 + $g1 + $g2 + $g3 + $b1 + $b2 + $b3 + $d1 + $d2 + $d3 == 0) {
                                 $this->vue->resultat();
                             }

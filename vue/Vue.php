@@ -112,14 +112,14 @@ class Vue
                                 </form>
                             </div>
                             <div class="back">
-                                <form action="index" method="GET">
+                                <form action="index.php" method="GET">
                                     <button name="precedent" value="true">
                                         <i class="fas fa-undo-alt"></i>
                                     </button>
                                 </form>
                             </div>
                             <div class="logout">
-                                <form action="index" method="GET">
+                                <form action="index.php" method="GET">
                                     <button name="deconnexion" value="true">
                                         QUIT <i class="fas fa-sign-out-alt"></i>
                                     </button>
@@ -135,24 +135,44 @@ class Vue
                     </h1>
                     <ol style="list-style: none;">
                         <li>
-                            <mark>Jerry Wood</mark>
-                            <small>315</small>
+                            <mark><?php
+                                echo $_SESSION["leaderboard"][0][0];
+                                ?></mark>
+                            <small><?php
+                                echo $_SESSION["leaderboard"][0][1];
+                                ?></small>
                         </li>
                         <li>
-                            <mark>Brandon Barnes</mark>
-                            <small>301</small>
+                            <mark><?php
+                                echo $_SESSION["leaderboard"][1][0];
+                                ?></mark>
+                            <small><?php
+                                echo $_SESSION["leaderboard"][1][1];
+                                ?></small>
                         </li>
                         <li>
-                            <mark>Raymond Knight</mark>
-                            <small>292</small>
+                            <mark><?php
+                                echo $_SESSION["leaderboard"][2][0];
+                                ?></mark>
+                            <small><?php
+                                echo $_SESSION["leaderboard"][2][1];
+                                ?></small>
                         </li>
                         <li>
-                            <mark>Trevor McCormick</mark>
-                            <small>245</small>
+                            <mark><?php
+                                echo $_SESSION["leaderboard"][3][0];
+                                ?></mark>
+                            <small><?php
+                                echo $_SESSION["leaderboard"][3][1];
+                                ?></small>
                         </li>
                         <li>
-                            <mark>Andrew Fox</mark>
-                            <small>203</small>
+                            <mark><?php
+                                echo $_SESSION["leaderboard"][4][0];
+                                ?></mark>
+                            <small><?php
+                                echo $_SESSION["leaderboard"][4][1];
+                                ?></small>
                         </li>
                     </ol>
                 </div>

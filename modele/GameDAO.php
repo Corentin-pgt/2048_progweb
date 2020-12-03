@@ -28,6 +28,12 @@ class GameDAO
         echo $result;
     }
 
+    public function getLeaderboard()
+    {
+        $req = $this->db->query("select pseudo, score from PARTIES ORDER BY score DESC LIMIT 0,5");
+        return $req->fetchAll();
+    }
+
     public function getId(): int
     {
         $pseudo = $_SESSION["pseudo"];
