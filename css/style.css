@@ -249,14 +249,16 @@ button:active:after {
 }
 .leaderboard ol {
     counter-reset: leaderboard;
-    margin-right: 15px;
+    margin-right: 18px;
+    margin-left: -20px;
+    margin-bottom: 18px;
 }
 .leaderboard ol li {
     position: relative;
     z-index: 1;
     font-size: 25px;
     counter-increment: leaderboard;
-    padding: 18px 10px 18px 50px;
+    padding: 18px 10px 18px;
     cursor: default;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;

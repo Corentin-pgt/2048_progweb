@@ -133,7 +133,7 @@ class Vue
                         <i class="fas fa-trophy"></i>
                         Leaderboard
                     </h1>
-                    <ol>
+                    <ol style="list-style: none;">
                         <li>
                             <mark>Jerry Wood</mark>
                             <small>315</small>
