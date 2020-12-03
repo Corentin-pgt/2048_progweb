@@ -289,18 +289,6 @@ button:active:after {
     background: none;
     color: #fff;
 }
-/*.leaderboard ol li mark::before, .leaderboard ol li mark::after {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    z-index: 1;*/
-/*    bottom: -11px;*/
-/*    left: -9px;*/
-/*    border-top: 10px solid #c24448;*/
-/*    border-left: 10px solid transparent;*/
-/*    -webkit-transition: all .1s ease-in-out;*/
-/*    transition: all .1s ease-in-out;*/
-/*    opacity: 0;*/
-/*}*/
 .leaderboard ol li mark::after {
     left: auto;
     right: -9px;
@@ -388,16 +376,6 @@ button:active:after {
 .leaderboard ol li:hover {
     z-index: 2;
     overflow: visible;
-}
-.leaderboard ol li:hover::after {
-    opacity: 1;
-    -webkit-transform: scaleX(1.06) scaleY(1.03);
-    transform: scaleX(1.06) scaleY(1.03);
-}
-.leaderboard ol li:hover mark::before, .leaderboard ol li:hover mark::after {
-    opacity: 1;
-    -webkit-transition: all .35s ease-in-out;
-    transition: all .35s ease-in-out;
 }
 
 
