@@ -57,78 +57,105 @@ class Vue
             $pseudo = $_SESSION["pseudo"];
             $score = $_SESSION["score"];
             ?>
-            <div class="content">
-                <div class="id">
-                    <img class="game-screen" src="assets/icon.svg">
-                    <div class="pseudo">
-                        <p><strong><i class="fas fa-user"></i> : </strong><?php echo($pseudo) ?></p>
-                    </div><div class="score">
-                        <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
+            <div class="wrapper">
+                <div class="content">
+                    <div class="id">
+                        <img class="game-screen" src="assets/icon.svg">
+                        <div class="pseudo">
+                            <p><strong><i class="fas fa-user"></i> : </strong><?php echo($pseudo) ?></p>
+                        </div><div class="score">
+                            <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
+                        </div>
                     </div>
-                </div>
-                <div class="grid">
-                    <?php
-                    for ($i = 0; $i < 4; $i++) {
-                        echo "<div class=\"row".($i + 1)."\">\n";
-                        for ($j = 0; $j < 4; $j++) {
-                            echo "<div class=\"col".($j + 1)."\">\n";
-                            echo "<p>";
-                            echo $grille[$i][$j] == 0 ? "" : $grille[$i][$j];
-                            echo "</p>\n";
+                    <div class="grid">
+                        <?php
+                        for ($i = 0; $i < 4; $i++) {
+                            echo "<div class=\"row".($i + 1)."\">\n";
+                            for ($j = 0; $j < 4; $j++) {
+                                echo "<div class=\"col".($j + 1)."\">\n";
+                                echo "<p>";
+                                echo $grille[$i][$j] == 0 ? "" : $grille[$i][$j];
+                                echo "</p>\n";
+                                echo "</div>\n";
+                            }
                             echo "</div>\n";
                         }
-                        echo "</div>\n";
-                    }
-                    ?>
-                </div>
-                <div class="controls">
-                    <div id="row1">
-                        <div class="up">
-                            <form action="index.php" method="GET">
-                                <button name="direction" value="haut"><i class="fas fa-arrow-alt-circle-up"></i></button>
-                            </form>
+                        ?>
+                    </div>
+                    <div class="controls">
+                        <div id="row1">
+                            <div class="up">
+                                <form action="index.php" method="GET">
+                                    <button name="direction" value="haut"><i class="fas fa-arrow-alt-circle-up"></i></button>
+                                </form>
+                            </div>
+                            <div class="reset">
+                                <form action="index.php" method="GET">
+                                    <button name="recommencer" value="true">NEW <i class="fas fa-sync-alt"></i></button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="reset">
-                            <form action="index.php" method="GET">
-                                <button name="recommencer" value="true">NEW <i class="fas fa-sync-alt"></i></button>
-                            </form>
+                        <div id="row2">
+                            <div class="left">
+                                <form action="index.php" method="GET">
+                                    <button name="direction" value="gauche"><i class="fas fa-arrow-alt-circle-left"></i></button>
+                                </form>
+                            </div>
+                            <div class="down">
+                                <form action="index.php" method="GET">
+                                    <button name="direction" value="bas"><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                </form>
+                            </div>
+                            <div class="right">
+                                <form action="index.php" method="GET">
+                                    <button name="direction" value="droite"><i class="fas fa-arrow-alt-circle-right"></i></button>
+                                </form>
+                            </div>
+                            <div class="back">
+                                <form action="index" method="GET">
+                                    <button name="precedent" value="true">
+                                        <i class="fas fa-undo-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="logout">
+                                <form action="index" method="GET">
+                                    <button name="deconnexion" value="true">
+                                        QUIT <i class="fas fa-sign-out-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div id="row2">
-                        <div class="left">
-                            <form action="index.php" method="GET">
-                                <button name="direction" value="gauche"><i class="fas fa-arrow-alt-circle-left"></i></button>
-                            </form>
-                        </div>
-                        <div class="down">
-                            <form action="index.php" method="GET">
-                                <button name="direction" value="bas"><i class="fas fa-arrow-alt-circle-down"></i></button>
-                            </form>
-                        </div>
-                        <div class="right">
-                            <form action="index.php" method="GET">
-                                <button name="direction" value="droite"><i class="fas fa-arrow-alt-circle-right"></i></button>
-                            </form>
-                        </div>
-                        <div class="back">
-                            <form action="index" method="GET">
-                                <button name="precedent" value="true">
-                                    <i class="fas fa-undo-alt"></i>
-                                </button>
-                            </form>
-                        </div>
-                        <div class="logout">
-                            <form action="index" method="GET">
-                                <button name="deconnexion" value="true">
-                                    QUIT <i class="fas fa-sign-out-alt"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="leaderboard">
-
+                <div class="leaderboard">
+                    <h1>
+                        <i class="fas fa-trophy"></i>
+                        Leaderboard
+                    </h1>
+                    <ol>
+                        <li>
+                            <mark>Jerry Wood</mark>
+                            <small>315</small>
+                        </li>
+                        <li>
+                            <mark>Brandon Barnes</mark>
+                            <small>301</small>
+                        </li>
+                        <li>
+                            <mark>Raymond Knight</mark>
+                            <small>292</small>
+                        </li>
+                        <li>
+                            <mark>Trevor McCormick</mark>
+                            <small>245</small>
+                        </li>
+                        <li>
+                            <mark>Andrew Fox</mark>
+                            <small>203</small>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </body>
         </html>
