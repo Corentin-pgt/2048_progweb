@@ -17,6 +17,7 @@ class ControleurJeu
     function play(string $pseudo, string $direction)
     {
         $_SESSION["pseudo"] = $pseudo;
+        $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard();
         if ($this->gameDAO->getId() == 0) {
             $grille = array(
                 array(0, 0, 0, 0),
@@ -43,16 +44,10 @@ class ControleurJeu
             setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
             setcookie("score_precedent", $_SESSION["score"], time() + 365 * 24 * 3600);
-
-            $result = $this->gameDAO->getLeaderboard();
-            $_SESSION["leaderboard"] = $result;
-            setcookie("leaderboard", json_encode($result), time() + 365 * 24 * 3600);
-
             $this->vue->game();
         } else {
             $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
             $score_precedent = $_COOKIE["score_precedent"];
-            $_SESSION["leaderboard"] = json_decode($_COOKIE["leaderboard"], true);
             if (!isset($_GET["precedent"]) || $_GET["precedent"] != true) {
                 $_SESSION["grille"] = json_decode($_COOKIE["grille"], true);
                 $_SESSION["score"] = $_COOKIE["score"];
