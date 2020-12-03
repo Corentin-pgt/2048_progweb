@@ -24,7 +24,7 @@ class Vue
             <div class="particle particle-3"></div>
             <div class="particle particle-4"></div>
         </div>
-        <center><div id="title-screen"><img class="title-screen" src="assets/icon.png"></div></center>
+        <div id="title-screen"><img class="title-screen" src="assets/icon.svg"></div>
         <form class="login" action="index.php" method="post">
             <p>Veuillez vous connecter pour commencer le jeu.</p>
             <input type="text" name="pseudo" id="pseudo" placeholder="Username" required autofocus>
@@ -59,7 +59,7 @@ class Vue
             ?>
             <div class="content">
                 <div class="id">
-                    <img class="game-screen" src="assets/icon.png">
+                    <img class="game-screen" src="assets/icon.svg">
                     <div class="pseudo">
                         <p><strong><i class="fas fa-user"></i> : </strong><?php echo($pseudo) ?></p>
                     </div><div class="score">
@@ -86,6 +86,11 @@ class Vue
                         <div class="up">
                             <form action="index.php" method="GET">
                                 <button name="direction" value="haut"><i class="fas fa-arrow-alt-circle-up"></i></button>
+                            </form>
+                        </div>
+                        <div class="reset">
+                            <form action="index.php" method="GET">
+                                <button name="recommencer" value="true">NEW <i class="fas fa-sync-alt"></i></button>
                             </form>
                         </div>
                     </div>
@@ -121,6 +126,9 @@ class Vue
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="leaderboard">
+
             </div>
         </body>
         </html>

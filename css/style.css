@@ -3,9 +3,11 @@
     border-radius: 50px;
     box-shadow: 5px 10px 10px rgba(52, 52, 52, 0.2);
 }
-
 #title-screen {
-    background-color: #1e1e1e;
+    position: relative;
+    z-index: 101;
+    margin-left: 780px;
+    margin-top: 30px;
 }
 
 .login {
@@ -174,7 +176,11 @@
 }
 
 .up {
-    margin-right: 354px;
+    margin-right: 75px;
+}
+
+.reset {
+    margin-left: 122px;
 }
 
 .controls div {
