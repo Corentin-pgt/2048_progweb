@@ -373,10 +373,6 @@ button:active:after {
     border-top: none;
     border-bottom: 8px solid #993639;
 }
-.leaderboard ol li:hover {
-    z-index: 2;
-    overflow: visible;
-}
 
 
 
