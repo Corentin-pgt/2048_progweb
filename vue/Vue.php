@@ -174,6 +174,46 @@ class Vue
                                 echo isset($_SESSION["leaderboard"][4][1]) ? $_SESSION["leaderboard"][4][1] : "-";
                                 ?></small>
                         </li>
+                        <li>
+                            <mark><?php
+                                echo isset($_SESSION["leaderboard"][5][0]) ? $_SESSION["leaderboard"][5][0] : "-";
+                                ?></mark>
+                            <small><?php
+                                echo isset($_SESSION["leaderboard"][5][1]) ? $_SESSION["leaderboard"][5][1] : "-";
+                                ?></small>
+                        </li>
+                        <li>
+                            <mark><?php
+                                echo isset($_SESSION["leaderboard"][6][0]) ? $_SESSION["leaderboard"][6][0] : "-";
+                                ?></mark>
+                            <small><?php
+                                echo isset($_SESSION["leaderboard"][6][1]) ? $_SESSION["leaderboard"][6][1] : "-";
+                                ?></small>
+                        </li>
+                        <li>
+                            <mark><?php
+                                echo isset($_SESSION["leaderboard"][7][0]) ? $_SESSION["leaderboard"][7][0] : "-";
+                                ?></mark>
+                            <small><?php
+                                echo isset($_SESSION["leaderboard"][7][1]) ? $_SESSION["leaderboard"][7][1] : "-";
+                                ?></small>
+                        </li>
+                        <li>
+                            <mark><?php
+                                echo isset($_SESSION["leaderboard"][8][0]) ? $_SESSION["leaderboard"][8][0] : "-";
+                                ?></mark>
+                            <small><?php
+                                echo isset($_SESSION["leaderboard"][8][1]) ? $_SESSION["leaderboard"][8][1] : "-";
+                                ?></small>
+                        </li>
+                        <li>
+                            <mark><?php
+                                echo isset($_SESSION["leaderboard"][9][0]) ? $_SESSION["leaderboard"][9][0] : "-";
+                                ?></mark>
+                            <small><?php
+                                echo isset($_SESSION["leaderboard"][9][1]) ? $_SESSION["leaderboard"][9][1] : "-";
+                                ?></small>
+                        </li>
                     </ol>
                 </div>
             </div>

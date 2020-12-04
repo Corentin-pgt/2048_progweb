@@ -330,50 +330,61 @@ button:active:after {
 }
 .leaderboard ol li:nth-child(2)::after {
     background: #e0574f;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
-}
-.leaderboard ol li:nth-child(2) mark::before, .leaderboard ol li:nth-child(2) mark::after {
-    border-top: 6px solid #ba4741;
-    bottom: -7px;
 }
 .leaderboard ol li:nth-child(3) {
     background: #d7514d;
 }
 .leaderboard ol li:nth-child(3)::after {
     background: #d7514d;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
-}
-.leaderboard ol li:nth-child(3) mark::before, .leaderboard ol li:nth-child(3) mark::after {
-    border-top: 2px solid #b0433f;
-    bottom: -3px;
 }
 .leaderboard ol li:nth-child(4) {
     background: #cd4b4b;
 }
 .leaderboard ol li:nth-child(4)::after {
     background: #cd4b4b;
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
-}
-.leaderboard ol li:nth-child(4) mark::before, .leaderboard ol li:nth-child(4) mark::after {
-    top: -7px;
-    bottom: auto;
-    border-top: none;
-    border-bottom: 6px solid #a63d3d;
 }
 .leaderboard ol li:nth-child(5) {
     background: #c24448;
-    border-radius: 0 0 10px 10px;
 }
 .leaderboard ol li:nth-child(5)::after {
     background: #c24448;
-    box-shadow: 0 -2.5px 0 rgba(0, 0, 0, 0.12);
     border-radius: 0 0 10px 10px;
 }
-.leaderboard ol li:nth-child(5) mark::before, .leaderboard ol li:nth-child(5) mark::after {
-    top: -9px;
-    bottom: auto;
-    border-top: none;
-    border-bottom: 8px solid #993639;
+.leaderboard ol li:nth-child(6) {
+    background: #b54044;
+}
+.leaderboard ol li:nth-child(6)::after {
+    background: #b54044;
+    border-radius: 0 0 10px 10px;
+}
+.leaderboard ol li:nth-child(7) {
+    background: #a23a3d;
+}
+.leaderboard ol li:nth-child(7)::after {
+    background: #a23a3d;
+    border-radius: 0 0 10px 10px;
+}
+.leaderboard ol li:nth-child(8) {
+    background: #963538;
+}
+.leaderboard ol li:nth-child(8)::after {
+    background: #963538;
+    border-radius: 0 0 10px 10px;
+}
+.leaderboard ol li:nth-child(9) {
+    background: #883033;
+}
+.leaderboard ol li:nth-child(9)::after {
+    background: #883033;
+    border-radius: 0 0 10px 10px;
+}
+.leaderboard ol li:nth-child(10) {
+    background: #75292b;
+    border-radius: 0 0 10px 10px;
+}
+.leaderboard ol li:nth-child(10)::after {
+    background: #75292b;
+    border-radius: 0 0 10px 10px;
 }
 
 
