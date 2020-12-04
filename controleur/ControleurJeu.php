@@ -49,6 +49,7 @@ class ControleurJeu
             }
             $game = new Game($pseudo);
             $this->gameDAO->insert($game);
+
             $_SESSION["grille"] = $grille;
             $_SESSION["score"] = "0";
             $_SESSION["leaderboard"] = $leaderboard;
