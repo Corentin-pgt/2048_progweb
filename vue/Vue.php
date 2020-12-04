@@ -139,7 +139,7 @@ class Vue
                                 echo isset($_SESSION["leaderboard"][0][0]) ? $_SESSION["leaderboard"][0][0] : "-";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["wonGamesOthers"][0]) ? ("<i class=\"fas fa-medal\"></i>" . $_SESSION["wonGamesOthers"][0]) : "<span><i class=\"fas fa-medal\"></i> 0</span>";
+                                echo isset($_SESSION["wonGamesOthers"][0][0]) ? ("<i class=\"fas fa-medal\"></i>" . $_SESSION["wonGamesOthers"][0][0]) : "<span><i class=\"fas fa-medal\"></i> 0</span>";
                                 echo isset($_SESSION["leaderboard"][0][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][0][1]) : "-";
                                 ?></small>
                         </li>
@@ -148,7 +148,8 @@ class Vue
                                 echo isset($_SESSION["leaderboard"][1][0]) ? $_SESSION["leaderboard"][1][0] : "-";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][1][1]) ? $_SESSION["leaderboard"][1][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][1][0]) ? ("<i class=\"fas fa-medal\"></i>" . $_SESSION["wonGamesOthers"][1][0]) : "<span><i class=\"fas fa-medal\"></i> 0</span>";
+                                echo isset($_SESSION["leaderboard"][1][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][1][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
