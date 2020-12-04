@@ -17,9 +17,20 @@ class ControleurJeu
     function play(string $pseudo, string $direction)
     {
         $_SESSION["pseudo"] = $pseudo;
-        $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard();
-        $id = $this->gameDAO->getId();
-        if ($id == 0){
+        $leaderboard = $this->gameDAO->getLeaderboard(10);
+        $lost = null;
+        $won = null;
+        for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
+            $lost[$cpt] = $this->gameDAO->getLostGames($this->gameDAO->getId($leaderboard[0][$cpt]));
+            $won[$cpt] = $this->gameDAO->getWinGames($this->gameDAO->getId($leaderboard[0][$cpt]));
+        }
+        $_SESSION["lostGamesOthers"] = $lost;
+        $_SESSION["wonGamesOthers"] = $won;
+        $id = $this->gameDAO->getId($_SESSION["pseudo"]);
+        $_SESSION["leaderboard"] = $leaderboard;
+        $_SESSION["lostGames"] = $this->gameDAO->getLostGames($id);
+        $_SESSION["wonGames"] = $this->gameDAO->getWinGames($id);
+        if ($id == 0) {
             $grille = array(
                 array(0, 0, 0, 0),
                 array(0, 0, 0, 0),
@@ -64,7 +75,7 @@ class ControleurJeu
                             $k1 = $this->retasseHaut($_SESSION["grille"], 1);
                             $k2 = $this->additionneHaut($_SESSION["grille"], 1);
                             $k3 = $this->retasseHaut($_SESSION["grille"], 1);
-                            $id = $this->gameDAO->getId();
+                            $id = $this->gameDAO->getId($_SESSION["pseudo"]);
                             $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
                             $l = $k1 + $k2 + $k3;
                             break;
@@ -72,7 +83,7 @@ class ControleurJeu
                             $k1 = $this->retasseGauche($_SESSION["grille"], 1);
                             $k2 = $this->additionneGauche($_SESSION["grille"], 1);
                             $k3 = $this->retasseGauche($_SESSION["grille"], 1);
-                            $id = $this->gameDAO->getId();
+                            $id = $this->gameDAO->getId($_SESSION["pseudo"]);
                             $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
                             $l = $k1 + $k2 + $k3;
                             break;
@@ -80,7 +91,7 @@ class ControleurJeu
                             $k1 = $this->retasseBas($_SESSION["grille"], 1);
                             $k2 = $this->additionnebas($_SESSION["grille"], 1);
                             $k3 = $this->retasseBas($_SESSION["grille"], 1);
-                            $id = $this->gameDAO->getId();
+                            $id = $this->gameDAO->getId($_SESSION["pseudo"]);
                             $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
                             $l = $k1 + $k2 + $k3;
                             break;
@@ -88,7 +99,7 @@ class ControleurJeu
                             $k1 = $this->retasseDroite($_SESSION["grille"], 1);
                             $k2 = $this->additionneDroite($_SESSION["grille"], 1);
                             $k3 = $this->retasseDroite($_SESSION["grille"], 1);
-                            $id = $this->gameDAO->getId();
+                            $id = $this->gameDAO->getId($_SESSION["pseudo"]);
                             $this->gameDAO->setScore($id, ($this->gameDAO->getScore($id) + $k2));
                             $l = $k1 + $k2 + $k3;
                             break;
@@ -126,6 +137,7 @@ class ControleurJeu
                             $d2 = $this->additionneDroite($_SESSION["grille"], 0);
                             $d3 = $this->retasseDroite($_SESSION["grille"], 0);
                             if ($h1 + $h2 + $h3 + $g1 + $g2 + $g3 + $b1 + $b2 + $b3 + $d1 + $d2 + $d3 == 0) {
+                                $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(20);
                                 $this->vue->resultat();
                             }
                         }
@@ -134,7 +146,7 @@ class ControleurJeu
                         setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
                     }
                     setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
-                    $score = $this->gameDAO->getScore($this->gameDAO->getId());
+                    $score = $this->gameDAO->getScore($this->gameDAO->getId($_SESSION["pseudo"]));
                     $_SESSION["score"] = $score;
                     setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
                     $this->vue->game();

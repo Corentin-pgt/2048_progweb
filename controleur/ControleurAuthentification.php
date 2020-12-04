@@ -46,7 +46,7 @@ class ControleurAuthentification
 
     function recommencer(){
         $gameDAO = new GameDAO();
-        $id = $gameDAO->getId();
+        $id = $gameDAO->getId($_SESSION["pseudo"]);
         $gameDAO->getScore($id)<="2048" ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
         header("Location: index.php");
     }
