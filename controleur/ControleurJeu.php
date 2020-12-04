@@ -18,14 +18,6 @@ class ControleurJeu
     {
         $_SESSION["pseudo"] = $pseudo;
         $leaderboard = $this->gameDAO->getLeaderboard(10);
-        $lost = null;
-        $won = null;
-        for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
-            $lost[$cpt] = $this->gameDAO->getLostGames($this->gameDAO->getId($leaderboard[$cpt][0]));
-            $won[$cpt] = $this->gameDAO->getWinGames($this->gameDAO->getId($leaderboard[$cpt][0]));
-        }
-        $_SESSION["lostGamesOthers"] = $lost;
-        $_SESSION["wonGamesOthers"] = $won;
         $id = $this->gameDAO->getId($_SESSION["pseudo"]);
         $_SESSION["lostGames"] = $this->gameDAO->getLostGames($id);
         $_SESSION["wonGames"] = $this->gameDAO->getWinGames($id);
@@ -53,6 +45,14 @@ class ControleurJeu
             $_SESSION["grille"] = $grille;
             $_SESSION["score"] = "0";
             $_SESSION["leaderboard"] = $leaderboard;
+            $lost = null;
+            $won = null;
+            for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
+                $lost[$cpt] = $this->gameDAO->getLostGames($this->gameDAO->getId($leaderboard[$cpt][0]));
+                $won[$cpt] = $this->gameDAO->getWinGames($this->gameDAO->getId($leaderboard[$cpt][0]));
+            }
+            $_SESSION["lostGamesOthers"] = $lost;
+            $_SESSION["wonGamesOthers"] = $won;
             setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
             setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
@@ -149,7 +149,16 @@ class ControleurJeu
                     setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
                     $score = $this->gameDAO->getScore($this->gameDAO->getId($_SESSION["pseudo"]));
                     $_SESSION["score"] = $score;
-                    $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(10);
+                    $leaderboard = $this->gameDAO->getLeaderboard(10);
+                    $lost = null;
+                    $won = null;
+                    for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
+                        $lost[$cpt] = $this->gameDAO->getLostGames($this->gameDAO->getId($leaderboard[$cpt][0]));
+                        $won[$cpt] = $this->gameDAO->getWinGames($this->gameDAO->getId($leaderboard[$cpt][0]));
+                    }
+                    $_SESSION["leaderboard"] = $leaderboard;
+                    $_SESSION["lostGamesOthers"] = $lost;
+                    $_SESSION["wonGamesOthers"] = $won;
                     setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
                     $this->vue->game();
                 }
