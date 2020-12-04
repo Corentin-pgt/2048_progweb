@@ -11,7 +11,7 @@ class Vue
         <head>
             <meta charset="utf-8">
             <title>2048: Le jeu du futur </title>
-            <link rel="icon" href="../assets/icon.png">
+            <link rel="icon" href="assets/icon.png">
             <link rel="stylesheet" content="text/css" href="css/style.css">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
             <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -139,7 +139,8 @@ class Vue
                                 echo isset($_SESSION["leaderboard"][0][0]) ? $_SESSION["leaderboard"][0][0] : "-";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][0][1]) ? $_SESSION["leaderboard"][0][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][0]) ? ("<i class=\"fas fa-medal\"></i>" . $_SESSION["wonGamesOthers"][0]) : "<span><i class=\"fas fa-medal\"></i> 0</span>";
+                                echo isset($_SESSION["leaderboard"][0][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][0][1]) : "-";
                                 ?></small>
                         </li>
                         <li>

@@ -10,6 +10,10 @@
     margin-top: 30px;
 }
 
+span {
+    margin-right: 50px;
+}
+
 .login {
     margin-top: 3%;
     overflow: hidden;
@@ -386,8 +390,6 @@ button:active:after {
     background: #75292b;
     border-radius: 0 0 10px 10px;
 }
-
-
 
 @-webkit-keyframes wawes {
     from {
