@@ -28,15 +28,16 @@ class GameDAO
         echo $result;
     }
 
-    public function getLeaderboard()
+    public function getLeaderboard($number)
     {
-        $req = $this->db->query("select pseudo, score from PARTIES ORDER BY score DESC LIMIT 0,5");
+        $req = $this->db->prepare("select pseudo, score from PARTIES ORDER BY score DESC LIMIT 0,?");
+        $req->bindParam(1, $number);
+        $req->execute();
         return $req->fetchAll();
     }
 
-    public function getId(): int
+    public function getId($pseudo): int
     {
-        $pseudo = $_SESSION["pseudo"];
         $statement = $this->db->prepare("select id from PARTIES where pseudo=? and gagne=0;");
         $statement->bindParam(1, $pseudo);
         $statement->execute();
@@ -77,6 +78,19 @@ class GameDAO
         $statement->bindParam(1, $etat);
         $statement->bindParam(2, $id);
         $statement->execute();
-        //$result = $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getLostGames($id){
+        $statement = $this->db->prepare("select count(*) from PARTIES where id=? and score=1");
+        $statement->bindParam(1, $id);
+        $statement->execute();
+        return $statement->fetch();
+    }
+
+    public function getWinGames($id){
+        $statement = $this->db->prepare("select count(*) from PARTIES where id=? and score=2");
+        $statement->bindParam(1, $id);
+        $statement->execute();
+        return $statement->fetch();
     }
 }
