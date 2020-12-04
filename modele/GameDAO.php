@@ -84,13 +84,15 @@ class GameDAO
         $statement = $this->db->prepare("select count(*) from PARTIES where id=? and score=1");
         $statement->bindParam(1, $id);
         $statement->execute();
-        return $statement->fetch();
+        $result = $statement->fetch();
+        return $result[0];
     }
 
     public function getWinGames($id){
         $statement = $this->db->prepare("select count(*) from PARTIES where id=? and score=2");
         $statement->bindParam(1, $id);
         $statement->execute();
-        return $statement->fetch();
+        $result = $statement->fetch();
+        return $result[0];
     }
 }

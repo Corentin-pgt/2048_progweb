@@ -20,7 +20,7 @@ class ControleurJeu
         $leaderboard = $this->gameDAO->getLeaderboard(10);
         $lost = null;
         $won = null;
-        for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
+        for ($cpt = 0; $cpt < sizeof($leaderboard)-1; $cpt++) {
             $lost[$cpt] = $this->gameDAO->getLostGames($this->gameDAO->getId($leaderboard[0][$cpt]));
             $won[$cpt] = $this->gameDAO->getWinGames($this->gameDAO->getId($leaderboard[0][$cpt]));
         }
