@@ -148,7 +148,8 @@ class Vue
                                 echo isset($_SESSION["leaderboard"][1][0]) ? $_SESSION["leaderboard"][1][0] : "-";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][1][1]) ? $_SESSION["leaderboard"][1][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][1]) ? ("<i class=\"fas fa-medal\"></i>" . $_SESSION["wonGamesOthers"][1]) : "<span><i class=\"fas fa-medal\"></i> 0</span>";
+                                echo isset($_SESSION["leaderboard"][1][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][1][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
