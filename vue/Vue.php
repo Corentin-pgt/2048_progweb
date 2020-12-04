@@ -136,84 +136,92 @@ class Vue
                     <ol style="list-style: none;">
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][0][0]) ? $_SESSION["leaderboard"][0][0] : "-";
+                                echo isset($_SESSION["leaderboard"][0][0]) ? $_SESSION["leaderboard"][0][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["wonGamesOthers"][0]) ? ("<i class=\"fas fa-medal\"></i>" . $_SESSION["wonGamesOthers"][0]) : "<span><i class=\"fas fa-medal\"></i> 0</span>";
+                                echo isset($_SESSION["wonGamesOthers"][0]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][0] . "</span>") : " ";
                                 echo isset($_SESSION["leaderboard"][0][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][0][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][1][0]) ? $_SESSION["leaderboard"][1][0] : "-";
+                                echo isset($_SESSION["leaderboard"][1][0]) ? $_SESSION["leaderboard"][1][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["wonGamesOthers"][1]) ? ("<i class=\"fas fa-medal\"></i>" . $_SESSION["wonGamesOthers"][1]) : "<span><i class=\"fas fa-medal\"></i> 0</span>";
+                                echo isset($_SESSION["wonGamesOthers"][1]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][1] . "</span>") : " ";
                                 echo isset($_SESSION["leaderboard"][1][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][1][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][2][0]) ? $_SESSION["leaderboard"][2][0] : "-";
+                                echo isset($_SESSION["leaderboard"][2][0]) ? $_SESSION["leaderboard"][2][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][2][1]) ? $_SESSION["leaderboard"][2][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][2]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][2] . "</span>") : " ";
+                                echo isset($_SESSION["leaderboard"][2][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][2][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][3][0]) ? $_SESSION["leaderboard"][3][0] : "-";
+                                echo isset($_SESSION["leaderboard"][3][0]) ? $_SESSION["leaderboard"][3][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][3][1]) ? $_SESSION["leaderboard"][3][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][3]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][3] . "</span>") : " ";
+                                echo isset($_SESSION["leaderboard"][3][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][3][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][4][0]) ? $_SESSION["leaderboard"][4][0] : "-";
+                                echo isset($_SESSION["leaderboard"][4][0]) ? $_SESSION["leaderboard"][4][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][4][1]) ? $_SESSION["leaderboard"][4][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][4]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][4] . "</span>") : " ";
+                                echo isset($_SESSION["leaderboard"][4][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][4][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][5][0]) ? $_SESSION["leaderboard"][5][0] : "-";
+                                echo isset($_SESSION["leaderboard"][5][0]) ? $_SESSION["leaderboard"][5][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][5][1]) ? $_SESSION["leaderboard"][5][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][5]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][5] . "</span>") : " ";
+                                echo isset($_SESSION["leaderboard"][5][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][5][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][6][0]) ? $_SESSION["leaderboard"][6][0] : "-";
+                                echo isset($_SESSION["leaderboard"][6][0]) ? $_SESSION["leaderboard"][6][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][6][1]) ? $_SESSION["leaderboard"][6][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][6]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][6] . "</span>") : " ";
+                                echo isset($_SESSION["leaderboard"][6][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][6][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][7][0]) ? $_SESSION["leaderboard"][7][0] : "-";
+                                echo isset($_SESSION["leaderboard"][7][0]) ? $_SESSION["leaderboard"][7][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][7][1]) ? $_SESSION["leaderboard"][7][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][7]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][7] . "</span>") : " ";
+                                echo isset($_SESSION["leaderboard"][7][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][7][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][8][0]) ? $_SESSION["leaderboard"][8][0] : "-";
+                                echo isset($_SESSION["leaderboard"][8][0]) ? $_SESSION["leaderboard"][8][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][8][1]) ? $_SESSION["leaderboard"][8][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][8]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][8] . "</span>") : " ";
+                                echo isset($_SESSION["leaderboard"][8][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][8][1]) : "-";
                                 ?></small>
                         </li>
                         <li>
                             <mark><?php
-                                echo isset($_SESSION["leaderboard"][9][0]) ? $_SESSION["leaderboard"][9][0] : "-";
+                                echo isset($_SESSION["leaderboard"][9][0]) ? $_SESSION["leaderboard"][9][0] : " ";
                                 ?></mark>
                             <small><?php
-                                echo isset($_SESSION["leaderboard"][9][1]) ? $_SESSION["leaderboard"][9][1] : "-";
+                                echo isset($_SESSION["wonGamesOthers"][9]) ? ("<span><i class=\"fas fa-medal\"></i> " . $_SESSION["wonGamesOthers"][9] . "</span>") : " ";
+                                echo isset($_SESSION["leaderboard"][9][1]) ? ("<i class=\"fas fa-star\"></i> " . $_SESSION["leaderboard"][9][1]) : "-";
                                 ?></small>
                         </li>
                     </ol>
@@ -239,6 +247,12 @@ class Vue
             <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
         </head>
         <body>
+        <div class="animation-wrapper">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+        </div>
             <div class="cards">
                 <div class="player1">
 
