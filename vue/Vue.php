@@ -11,7 +11,7 @@ class Vue
         <head>
             <meta charset="utf-8">
             <title>2048: Le jeu du futur </title>
-            <link rel="icon" href="assets/icon.png">
+            <link rel="icon" href="../assets/icon.png">
             <link rel="stylesheet" content="text/css" href="css/style.css">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
             <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -197,7 +197,23 @@ class Vue
             <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
         </head>
         <body>
+            <div class="cards">
+                <div class="player1">
 
+                </div>
+                <div class="player2">
+
+                </div>
+                <div class="player3">
+
+                </div>
+                <div class="player4">
+
+                </div>
+                <div class="player5">
+
+                </div>
+            </div>
         </body>
         </html>
         <?php
