@@ -149,7 +149,7 @@ class ControleurJeu
                         setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
                     }
                     setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
-                    $score = $this->gameDAO->getScore($this->gameDAO->getId($_SESSION["pseudo"]));
+                    $score = $this->gameDAO->getScore($id);
                     $_SESSION["score"] = $score;
                     $leaderboard = $this->gameDAO->getLeaderboard(10);
                     $lost = null;

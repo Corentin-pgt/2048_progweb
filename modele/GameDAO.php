@@ -51,7 +51,7 @@ class GameDAO
         $statement->bindParam(1, $id);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result["score"];
+        return $result != null ? $result["score"] : 0;
     }
 
     public function setScore($id, $score)
