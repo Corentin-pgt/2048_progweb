@@ -72,7 +72,19 @@ class Vue
                         for ($i = 0; $i < 4; $i++) {
                             echo "<div class=\"row".($i + 1)."\">\n";
                             for ($j = 0; $j < 4; $j++) {
-                                echo "<div class=\"col".($j + 1)."\">\n";
+                                if ($grille[$i][$j] == 0) echo "<div class=\"col".($j + 1)."\" style=\"background: #fcfcfc; color: black\">\n";
+                                else if ($grille[$i][$j] == 2) echo "<div class=\"col".($j + 1)."\" style=\"background: #eee4da; color: black\">\n";
+                                else if ($grille[$i][$j] == 4) echo "<div class=\"col".($j + 1)."\" style=\"background: #ede0c8; color: black\">\n";
+                                else if ($grille[$i][$j] == 8) echo "<div class=\"col".($j + 1)."\" style=\"background: #f2b179; color: white\">\n";
+                                else if ($grille[$i][$j] == 16) echo "<div class=\"col".($j + 1)."\" style=\"background: #f59563; color: white\">\n";
+                                else if ($grille[$i][$j] == 32) echo "<div class=\"col".($j + 1)."\" style=\"background: #f67c5f; color: white\">\n";
+                                else if ($grille[$i][$j] == 64) echo "<div class=\"col".($j + 1)."\" style=\"background: #f65e3b; color: white\">\n";
+                                else if ($grille[$i][$j] == 128) echo "<div class=\"col".($j + 1)."\" style=\"background: #edcf72; color: white\">\n";
+                                else if ($grille[$i][$j] == 256) echo "<div class=\"col".($j + 1)."\" style=\"background: #edcc61; color: white\">\n";
+                                else if ($grille[$i][$j] == 512) echo "<div class=\"col".($j + 1)."\" style=\"background: #edc850; color: white\">\n";
+                                else if ($grille[$i][$j] == 1024) echo "<div class=\"col".($j + 1)."\" style=\"background: #edc53f; color: white\">\n";
+                                else if ($grille[$i][$j] == 2048) echo "<div class=\"col".($j + 1)."\" style=\"background: #edc22e; color: white\">\n";
+                                else echo "<div class=\"col".($j + 1)."\" style=\"background: #3c3a32; color: white\">\n";
                                 echo "<p>";
                                 echo $grille[$i][$j] == 0 ? "" : $grille[$i][$j];
                                 echo "</p>\n";

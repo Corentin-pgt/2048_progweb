@@ -48,8 +48,9 @@ class ControleurJeu
             $lost = null;
             $won = null;
             for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
-                $lost[$cpt] = $this->gameDAO->getLostGames($this->gameDAO->getId($leaderboard[$cpt][0]));
-                $won[$cpt] = $this->gameDAO->getWinGames($this->gameDAO->getId($leaderboard[$cpt][0]));
+                $lost[$cpt] = $this->gameDAO->getLostGames($leaderboard[$cpt][0]);
+                $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
+                if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
             }
             $_SESSION["lostGamesOthers"] = $lost;
             $_SESSION["wonGamesOthers"] = $won;
@@ -123,7 +124,7 @@ class ControleurJeu
                             $_SESSION["grille"][$dispo[$cell_random][0]][$dispo[$cell_random][1]] = $value_random * 2;
                         } catch (Exception $e) {
                         }
-                        if (sizeof($dispo) <= 1) {
+                        if (sizeof($dispo) - 1 == 0) {
 
                             $h1 = $this->retasseHaut($_SESSION["grille"], 0);
                             $h2 = $this->additionneHaut($_SESSION["grille"], 0);
@@ -139,6 +140,7 @@ class ControleurJeu
                             $d3 = $this->retasseDroite($_SESSION["grille"], 0);
                             if ($h1 + $h2 + $h3 + $g1 + $g2 + $g3 + $b1 + $b2 + $b3 + $d1 + $d2 + $d3 == 0) {
                                 $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(20);
+                                $this->gameDAO->getScore($id) < "2048" ? $this->gameDAO->setEtat(1, $id) : $this->gameDAO->setEtat(2, $id);
                                 $this->vue->resultat();
                             }
                         }
@@ -153,8 +155,9 @@ class ControleurJeu
                     $lost = null;
                     $won = null;
                     for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
-                        $lost[$cpt] = $this->gameDAO->getLostGames($this->gameDAO->getId($leaderboard[$cpt][0]));
-                        $won[$cpt] = $this->gameDAO->getWinGames($this->gameDAO->getId($leaderboard[$cpt][0]));
+                        $lost[$cpt] = $this->gameDAO->getLostGames($leaderboard[$cpt][0]);
+                        $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
+                        if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
                     }
                     $_SESSION["leaderboard"] = $leaderboard;
                     $_SESSION["lostGamesOthers"] = $lost;
@@ -165,6 +168,9 @@ class ControleurJeu
             } else {
                 $_SESSION["grille"] = $grille_precedente;
                 $_SESSION["score"] = $score_precedent;
+                $this->gameDAO->setScore($id, $score_precedent);
+                $leaderboard = $this->gameDAO->getLeaderboard(10);
+                $_SESSION["leaderboard"] = $leaderboard;
                 setcookie("grille", json_encode($grille_precedente), time() + 365 * 24 * 3600);
                 setcookie("score", $score_precedent, time() + 365 * 24 * 3600);
                 setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);

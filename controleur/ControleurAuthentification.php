@@ -39,15 +39,17 @@ class ControleurAuthentification
         } else $this->vue->demandePseudo();
     }
 
-    function deconnexion(){
+    function deconnexion()
+    {
         session_destroy();
         header("Location: index.php");
     }
 
-    function recommencer(){
+    function recommencer()
+    {
         $gameDAO = new GameDAO();
         $id = $gameDAO->getId($_SESSION["pseudo"]);
-        $gameDAO->getScore($id)<="2048" ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
+        $gameDAO->getScore($id) < "2048" ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
         header("Location: index.php");
     }
 }
