@@ -18,6 +18,7 @@ class ControleurJeu
     {
         $_SESSION["pseudo"] = $pseudo;
         $leaderboard = $this->gameDAO->getLeaderboard(10);
+        $_SESSION["leaderboard"] = $leaderboard;
         $id = $this->gameDAO->getId($_SESSION["pseudo"]);
         $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
         $_SESSION["lostGames"] = $this->gameDAO->getLostGames($id);
@@ -45,7 +46,6 @@ class ControleurJeu
 
             $_SESSION["grille"] = $grille;
             $_SESSION["score"] = "0";
-            $_SESSION["leaderboard"] = $leaderboard;
             $lost = null;
             $won = null;
             for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
@@ -151,6 +151,7 @@ class ControleurJeu
                                 $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(20);
                                 $this->gameDAO->getScore($id) < "2048" ? $this->gameDAO->setEtat(1, $id) : $this->gameDAO->setEtat(2, $id);
                                 $this->vue->resultat();
+                                exit(0);
                             }
                         }
                     } else {
@@ -179,8 +180,8 @@ class ControleurJeu
                 $_SESSION["grille"] = $grille_precedente;
                 $_SESSION["score"] = $score_precedent;
                 $this->gameDAO->setScore($id, $score_precedent);
-                $leaderboard = $this->gameDAO->getLeaderboard(10);
-                $_SESSION["leaderboard"] = $leaderboard;
+                $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(10);
+                $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
                 setcookie("grille", json_encode($grille_precedente), time() + 365 * 24 * 3600);
                 setcookie("score", $score_precedent, time() + 365 * 24 * 3600);
                 setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);

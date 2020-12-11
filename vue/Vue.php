@@ -89,7 +89,7 @@ class Vue
                     for ($i = 0; $i < 4; $i++) {
                         echo "<div class=\"row" . ($i + 1) . "\">\n";
                         for ($j = 0; $j < 4; $j++) {
-                            if ($grille[$i][$j] == 0) echo "<div class=\"col" . ($j + 1) . "\" style=\"background: #fcfcfc; color: black\">\n";
+                            if ($grille[$i][$j] == 0) echo "<div class=\"col" . ($j + 1) . "\" style=\"background: #fafafa; color: black\">\n";
                             else if ($grille[$i][$j] == 2) echo "<div class=\"col" . ($j + 1) . "\" style=\"background: #eee4da; color: black\">\n";
                             else if ($grille[$i][$j] == 4) echo "<div class=\"col" . ($j + 1) . "\" style=\"background: #ede0c8; color: black\">\n";
                             else if ($grille[$i][$j] == 8) echo "<div class=\"col" . ($j + 1) . "\" style=\"background: #f2b179; color: white\">\n";
