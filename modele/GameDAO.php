@@ -36,6 +36,15 @@ class GameDAO
         return $req->fetchAll();
     }
 
+    public function getBestScore($pseudo)
+    {
+        $req = $this->db->prepare("select max(score) from PARTIES where pseudo=?");
+        $req->bindParam(1, $pseudo);
+        $req->execute();
+        $result = $req->fetch();
+        return $result != null ? $result[0] : 0;
+    }
+
     public function getId($pseudo): int
     {
         $statement = $this->db->prepare("select id from PARTIES where pseudo=? and gagne=0;");

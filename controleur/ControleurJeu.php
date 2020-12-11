@@ -44,6 +44,7 @@ class ControleurJeu
 
             $_SESSION["grille"] = $grille;
             $_SESSION["score"] = "0";
+            $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
             $_SESSION["leaderboard"] = $leaderboard;
             $lost = null;
             $won = null;
@@ -151,6 +152,7 @@ class ControleurJeu
                     setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
                     $score = $this->gameDAO->getScore($id);
                     $_SESSION["score"] = $score;
+                    $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
                     $leaderboard = $this->gameDAO->getLeaderboard(10);
                     $lost = null;
                     $won = null;

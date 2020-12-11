@@ -144,22 +144,54 @@ span {
     max-height: 100px;
     box-shadow: 5px 10px 10px rgba(52, 52, 52, 0.2);
     border-radius: 15px;
-    margin-right: 100px;
-    margin-left: 35px;
-    margin-bottom: 20px;
+    margin-right: 20px;
 }
 .id {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin-left: 33px;
+    margin-bottom: 15px;
 }
-.id div {
-    width: 200px;
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 400px;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     font-size: 25px;
 }
+
+.pseudo {
+    margin: 0;
+}
+.pseudo p {
+    margin: 0;
+}
+
+.infoscore {
+    display: flex;
+    margin: 0;
+}
+.score {
+    margin: 0;
+    margin-right: 50px;
+    margin-left: -2.5px;
+    width: 100px;
+}
+.score p {
+    margin: 0;
+}
+.bestScore {
+    margin: 0;
+    width: 100px;
+}
+.bestScore p {
+    margin: 0;
+}
+
 .logout {
     width: auto;
 }
