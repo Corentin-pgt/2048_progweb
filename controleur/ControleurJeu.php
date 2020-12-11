@@ -23,6 +23,15 @@ class ControleurJeu
         $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
         $_SESSION["lostGames"] = $this->gameDAO->getLostGames($id);
         $_SESSION["wonGames"] = $this->gameDAO->getWinGames($id);
+        $lost = null;
+        $won = null;
+        for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
+            $lost[$cpt] = $this->gameDAO->getLostGames($leaderboard[$cpt][0]);
+            $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
+            if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
+        }
+        $_SESSION["lostGamesOthers"] = $lost;
+        $_SESSION["wonGamesOthers"] = $won;
         if ($id == 0) {
             $grille = array(
                 array(0, 0, 0, 0),
@@ -43,18 +52,8 @@ class ControleurJeu
             }
             $game = new Game($pseudo);
             $this->gameDAO->insert($game);
-
             $_SESSION["grille"] = $grille;
             $_SESSION["score"] = "0";
-            $lost = null;
-            $won = null;
-            for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
-                $lost[$cpt] = $this->gameDAO->getLostGames($leaderboard[$cpt][0]);
-                $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
-                if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
-            }
-            $_SESSION["lostGamesOthers"] = $lost;
-            $_SESSION["wonGamesOthers"] = $won;
             setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
             setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
@@ -163,8 +162,6 @@ class ControleurJeu
                     $_SESSION["score"] = $score;
                     $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
                     $leaderboard = $this->gameDAO->getLeaderboard(10);
-                    $lost = null;
-                    $won = null;
                     for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
                         $lost[$cpt] = $this->gameDAO->getLostGames($leaderboard[$cpt][0]);
                         $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
