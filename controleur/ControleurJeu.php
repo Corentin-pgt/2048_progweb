@@ -19,6 +19,7 @@ class ControleurJeu
         $_SESSION["pseudo"] = $pseudo;
         $leaderboard = $this->gameDAO->getLeaderboard(10);
         $id = $this->gameDAO->getId($_SESSION["pseudo"]);
+        $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
         $_SESSION["lostGames"] = $this->gameDAO->getLostGames($id);
         $_SESSION["wonGames"] = $this->gameDAO->getWinGames($id);
         if ($id == 0) {
@@ -44,7 +45,6 @@ class ControleurJeu
 
             $_SESSION["grille"] = $grille;
             $_SESSION["score"] = "0";
-            $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
             $_SESSION["leaderboard"] = $leaderboard;
             $lost = null;
             $won = null;
@@ -59,6 +59,7 @@ class ControleurJeu
             setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
             setcookie("score_precedent", $_SESSION["score"], time() + 365 * 24 * 3600);
+            setcookie("precedent", false, time() + 365 * 24 * 3600);
             $this->vue->game();
         } else {
             $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
@@ -122,7 +123,14 @@ class ControleurJeu
                         try {
                             $cell_random = random_int(0, sizeof($dispo) - 1);
                             $value_random = random_int(1, 2);
-                            $_SESSION["grille"][$dispo[$cell_random][0]][$dispo[$cell_random][1]] = $value_random * 2;
+                            if (isset($_COOKIE["precedent"]) && $_COOKIE["precedent"]) {
+                                $_SESSION["grille"][$dispo[$_COOKIE["cell_random"]][0]][$dispo[$_COOKIE["cell_random"]][1]] = $_COOKIE["value_random"] * 2;
+                                setcookie("precedent", false, time() + 365 * 24 * 3600);
+                            } else {
+                                $_SESSION["grille"][$dispo[$cell_random][0]][$dispo[$cell_random][1]] = $value_random * 2;
+                                setcookie("cell_random", $cell_random, time() + 365 * 24 * 3600);
+                                setcookie("value_random", $value_random, time() + 365 * 24 * 3600);
+                            }
                         } catch (Exception $e) {
                         }
                         if (sizeof($dispo) - 1 == 0) {
@@ -177,6 +185,7 @@ class ControleurJeu
                 setcookie("score", $score_precedent, time() + 365 * 24 * 3600);
                 setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
                 setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
+                setcookie("precedent", true, time() + 365 * 24 * 3600);
                 $this->vue->game();
             }
         }

@@ -178,15 +178,15 @@ span {
 .score {
     margin: 0;
     margin-right: 50px;
-    margin-left: -2.5px;
-    width: 100px;
+    margin-left: -3px;
+    width: 150px;
 }
 .score p {
     margin: 0;
 }
 .bestScore {
     margin: 0;
-    width: 100px;
+    width: 150px;
 }
 .bestScore p {
     margin: 0;
