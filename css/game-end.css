@@ -1,7 +1,3 @@
-.game-end-content {
-    overflow: auto;
-}
-
 .game-end-container {
     display: grid;
     place-content: center;
@@ -14,6 +10,10 @@
     padding: 2em;
     border-radius: 1em;
     display: flex;
+}
+
+.left img {
+    margin-left: .5em;
 }
 
 .right {
