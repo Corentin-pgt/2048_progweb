@@ -17,7 +17,7 @@ class Routeur
     public function routerRequete()
     {
         //bouton deconnexion
-        if (isset($_GET["deconnexion"]) && $_GET["deconnexion"] == true) {
+        if ((isset($_GET["deconnexion"]) && $_GET["deconnexion"] == true) || (isset($_GET["game-end-deconnexion"]) && $_GET["game-end-deconnexion"] == true)) {
             $this->ctrlAuthentification->deconnexion();
         }
         //bouton recommencer une partie
