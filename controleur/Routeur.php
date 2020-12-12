@@ -24,7 +24,7 @@ class Routeur
         else if (isset($_GET["recommencer"]) && $_GET["recommencer"] == true) {
             $this->ctrlAuthentification->recommencer();
         }
-        //si le joueur est connecté il continue de jouer
+        //le joueur est connecté, il continue de jouer
         else if (isset($_SESSION["pseudo"])) {
             $this->ctrlJeu->play($_SESSION["pseudo"], (isset($_GET["direction"])) ? $_GET["direction"] : "rien");
         }

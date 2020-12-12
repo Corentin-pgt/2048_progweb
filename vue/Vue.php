@@ -3,6 +3,7 @@
 class Vue
 {
 
+    //vue d'authentification
     function demandePseudo()
     {
         ?>
@@ -39,6 +40,7 @@ class Vue
         <?php
     }
 
+    //vue du jeu
     function game()
     {
         ?>
@@ -57,6 +59,7 @@ class Vue
         </head>
         <body style="background-image: url('assets/background.png');">
         <?php
+        //couper si le pseudo est trop long
         $grille = $_SESSION["grille"];
         $pseudo = $_SESSION["pseudo"];
         if (strlen($pseudo) > 25) {
@@ -84,6 +87,7 @@ class Vue
                 </div>
                 <div class="grid">
                     <?php
+                    //couleur des cases en fonction de leur valeur
                     for ($i = 0; $i < 4; $i++) {
                         echo "<div class=\"row" . ($i + 1) . "\">\n";
                         for ($j = 0; $j < 4; $j++) {
@@ -164,6 +168,7 @@ class Vue
                 <ol style="list-style: none;">
                     <li>
                         <mark><?php
+                            //couper si le pseudo est trop long
                             if (isset($_SESSION["leaderboard"][0][0])) {
                                 $str = $_SESSION["leaderboard"][0][0];
                                 if (strlen($str) > 17) {
@@ -350,6 +355,7 @@ class Vue
         <?php
     }
 
+    //vue des résultats
     function resultat()
     {
         ?>

@@ -16,7 +16,7 @@ class ControleurJeu
 
     function play(string $pseudo, string $direction)
     {
-        //on définit toutes les variables de session
+        //on définit toutes les variables de session quand le joueur se connecte
         $_SESSION["pseudo"] = $pseudo;
         $leaderboard = $this->gameDAO->getLeaderboard(10);
         $_SESSION["leaderboard"] = $leaderboard;
@@ -72,6 +72,7 @@ class ControleurJeu
 
         //si une partie est en cours
         else {
+            //on stocke l'ancienne grille et l'ancien score
             $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
             $score_precedent = $_COOKIE["score_precedent"];
             if (!isset($_GET["precedent"]) || $_GET["precedent"] != true) {
@@ -173,6 +174,7 @@ class ControleurJeu
                         setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
                         setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
                     }
+                    //on actualise les données de session directement après le coup
                     setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
                     $score = $this->gameDAO->getScore($id);
                     $_SESSION["score"] = $score;
@@ -180,7 +182,7 @@ class ControleurJeu
                     $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
                     $leaderboard = $this->gameDAO->getLeaderboard(10);
                     for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
-                        $lost[$cpt] = $this->gameDAO->getLostGames($leaderboard[$cpt][0]);
+                        $lost[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
                         $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
                         if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
                     }
@@ -190,7 +192,9 @@ class ControleurJeu
                     setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
                     $this->vue->game();
                 }
-            } else {
+            }
+            //coup précédent
+            else {
                 $_SESSION["grille"] = $grille_precedente;
                 $_SESSION["score"] = $score_precedent;
                 $this->gameDAO->setScore($id, $score_precedent);
