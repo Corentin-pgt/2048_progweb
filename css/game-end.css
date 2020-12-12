@@ -10,6 +10,7 @@
     padding: 2em;
     border-radius: 1em;
     display: flex;
+    margin-top: 4em;
 }
 
 .left img {
@@ -82,7 +83,7 @@
 }
 
 .position {
-    color: #f24353;
+    color: #cb494d;
     font-weight: bold;
     font-size: 1.1em;
 }

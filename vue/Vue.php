@@ -425,7 +425,7 @@ class Vue
             </div>
             <div class="player-cards">
                 <div class="player-row">
-                    <div class="player-card">
+                    <div class="player-card" style="background: #e9d992">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 1</p>
                             <p class="top-pseudo"><?php echo($_SESSION['leaderboard'][0][0]) ?></p>
@@ -438,9 +438,9 @@ class Vue
                             </div>
                         </div>
                     </div>
-                    <div class="player-card">
+                    <div class="player-card" style="background: #cacaca">
                         <div class="top">
-                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 1</p>
+                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 2</p>
                             <p class="top-pseudo"><?php echo($_SESSION['leaderboard'][1][0]) ?></p>
                         </div>
                         <div class="player-stats">
@@ -451,9 +451,9 @@ class Vue
                             </div>
                         </div>
                     </div>
-                    <div class="player-card">
+                    <div class="player-card" style="background: #e3b97c">
                         <div class="top">
-                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 1</p>
+                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 3</p>
                             <p class="top-pseudo"><?php echo($_SESSION['leaderboard'][2][0]) ?></p>
                         </div>
                         <div class="player-stats">
@@ -466,7 +466,7 @@ class Vue
                     </div>
                     <div class="player-card">
                         <div class="top">
-                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 1</p>
+                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 4</p>
                             <p class="top-pseudo"><?php echo($_SESSION['leaderboard'][3][0]) ?></p>
                         </div>
                         <div class="player-stats">
