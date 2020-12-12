@@ -25,14 +25,14 @@ class ControleurJeu
         $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
         $_SESSION["Games"] = $this->gameDAO->getGames($id);
         $_SESSION["wonGames"] = $this->gameDAO->getWinGames($id);
-        $lost = null;
+        $games = null;
         $won = null;
         for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
-            $lost[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
+            $games[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
             $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
             if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
         }
-        $_SESSION["GamesOthers"] = $lost;
+        $_SESSION["GamesOthers"] = $games;
         $_SESSION["wonGamesOthers"] = $won;
 
         //création d'une partie si il y en a pas en cours
@@ -62,24 +62,22 @@ class ControleurJeu
             $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
             $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
             //les cookies servent de stockage si le joueur se déconnecte
-            setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
-            setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
-            setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
-            setcookie("score_precedent", $_SESSION["score"], time() + 365 * 24 * 3600);
-            setcookie("precedent", false, time() + 365 * 24 * 3600);
+            setcookie($pseudo . "grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
+            setcookie($pseudo . "score", $_SESSION["score"], time() + 365 * 24 * 3600);
+            setcookie($pseudo . "grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
+            setcookie($pseudo . "score_precedent", $_SESSION["score"], time() + 365 * 24 * 3600);
+            setcookie($pseudo . "precedent", false, time() + 365 * 24 * 3600);
             $this->vue->game();
-        }
-
-        //si une partie est en cours
+        } //si une partie est en cours
         else {
             //on stocke l'ancienne grille et l'ancien score
-            $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
-            $score_precedent = $_COOKIE["score_precedent"];
+            $grille_precedente = json_decode($_COOKIE[$pseudo . "grille_precedente"], true);
+            $score_precedent = $_COOKIE[$pseudo . "score_precedent"];
             if (!isset($_GET["precedent"]) || $_GET["precedent"] != true) {
-                $_SESSION["grille"] = json_decode($_COOKIE["grille"], true);
-                $_SESSION["score"] = $_COOKIE["score"];
-                setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
-                setcookie("score_precedent", $_COOKIE["score"], time() + 365 * 24 * 3600);
+                $_SESSION["grille"] = json_decode($_COOKIE[$pseudo . "grille"], true);
+                $_SESSION["score"] = $_COOKIE[$pseudo . "score"];
+                setcookie($pseudo . "grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
+                setcookie($pseudo . "score_precedent", $_COOKIE[$pseudo . "score"], time() + 365 * 24 * 3600);
                 if ($direction == "rien") {
                     $this->vue->game();
                 } else {
@@ -136,13 +134,13 @@ class ControleurJeu
                             $cell_random = random_int(0, sizeof($dispo) - 1);
                             $value_random = random_int(1, 2);
                             //conservation de l'emplacement et de la valeur de la cellule si le joueur fait un coup précédent suivi d'une même direction
-                            if (isset($_COOKIE["precedent"]) && $_COOKIE["precedent"]) {
-                                $_SESSION["grille"][$dispo[$_COOKIE["cell_random"]][0]][$dispo[$_COOKIE["cell_random"]][1]] = $_COOKIE["value_random"] * 2;
-                                setcookie("precedent", false, time() + 365 * 24 * 3600);
+                            if (isset($_COOKIE[$pseudo . "precedent"]) && $_COOKIE[$pseudo . "precedent"]) {
+                                $_SESSION["grille"][$dispo[$_COOKIE[$pseudo . "cell_random"]][0]][$dispo[$_COOKIE[$pseudo . "cell_random"]][1]] = $_COOKIE[$pseudo . "value_random"] * 2;
+                                setcookie($pseudo . "precedent", false, time() + 365 * 24 * 3600);
                             } else {
                                 $_SESSION["grille"][$dispo[$cell_random][0]][$dispo[$cell_random][1]] = $value_random * 2;
-                                setcookie("cell_random", $cell_random, time() + 365 * 24 * 3600);
-                                setcookie("value_random", $value_random, time() + 365 * 24 * 3600);
+                                setcookie($pseudo . "cell_random", $cell_random, time() + 365 * 24 * 3600);
+                                setcookie($pseudo . "value_random", $value_random, time() + 365 * 24 * 3600);
                             }
                         } catch (Exception $e) {
                         }
@@ -163,37 +161,40 @@ class ControleurJeu
                             $d3 = $this->retasseDroite($_SESSION["grille"], 0);
                             if ($h1 + $h2 + $h3 + $g1 + $g2 + $g3 + $b1 + $b2 + $b3 + $d1 + $d2 + $d3 == 0) {
                                 $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(20);
+                                setcookie($pseudo . "grille", "", time() - 3600);
+                                setcookie($pseudo . "score", "", time() - 3600);
+                                setcookie($pseudo . "grille_precedente", "", time() - 3600);
+                                setcookie($pseudo . "score_precedent", "", time() - 3600);
+                                setcookie($pseudo . "precedent", "", time() - 3600);
                                 $this->gameDAO->getScore($id) < "2048" ? $this->gameDAO->setEtat(1, $id) : $this->gameDAO->setEtat(2, $id);
                                 $this->vue->resultat();
                                 exit(0);
                             }
                         }
-                    }
-                    //si le coup n'a pas eu d'effet on conserve la grille et le score précédent pour un éventuel coup précédent
+                    } //si le coup n'a pas eu d'effet on conserve la grille et le score précédent pour un éventuel coup précédent
                     else {
-                        setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
-                        setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
+                        setcookie($pseudo . "grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
+                        setcookie($pseudo . "score_precedent", $score_precedent, time() + 365 * 24 * 3600);
                     }
                     //on actualise les données de session directement après le coup
-                    setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
+                    setcookie($pseudo . "grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
                     $score = $this->gameDAO->getScore($id);
                     $_SESSION["score"] = $score;
                     $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
                     $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
                     $leaderboard = $this->gameDAO->getLeaderboard(10);
                     for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
-                        $lost[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
+                        $games[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
                         $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
                         if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
                     }
                     $_SESSION["leaderboard"] = $leaderboard;
-                    $_SESSION["lostGamesOthers"] = $lost;
+                    $_SESSION["GamesOthers"] = $games;
                     $_SESSION["wonGamesOthers"] = $won;
-                    setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
+                    setcookie($pseudo . "score", $_SESSION["score"], time() + 365 * 24 * 3600);
                     $this->vue->game();
                 }
-            }
-            //coup précédent
+            } //coup précédent
             else {
                 $_SESSION["grille"] = $grille_precedente;
                 $_SESSION["score"] = $score_precedent;
@@ -201,11 +202,11 @@ class ControleurJeu
                 $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(10);
                 $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
                 $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
-                setcookie("grille", json_encode($grille_precedente), time() + 365 * 24 * 3600);
-                setcookie("score", $score_precedent, time() + 365 * 24 * 3600);
-                setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
-                setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
-                setcookie("precedent", true, time() + 365 * 24 * 3600);
+                setcookie($pseudo . "grille", json_encode($grille_precedente), time() + 365 * 24 * 3600);
+                setcookie($pseudo . "score", $score_precedent, time() + 365 * 24 * 3600);
+                setcookie($pseudo . "grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
+                setcookie($pseudo . "score_precedent", $score_precedent, time() + 365 * 24 * 3600);
+                setcookie($pseudo . "precedent", true, time() + 365 * 24 * 3600);
                 $this->vue->game();
             }
         }
