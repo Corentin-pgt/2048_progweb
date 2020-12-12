@@ -30,7 +30,7 @@ class Vue
         <div id="title-screen"><img class="title-screen" src="assets/icon.svg"></div>
         <form class="login" action="index.php" method="post">
             <p>Veuillez vous connecter pour commencer le jeu.</p>
-            <input type="text" name="pseudo" id="pseudo" placeholder="Username" required autofocus pattern="^[a-zA-Z0-9_]{3,24}$">
+            <input type="text" name="pseudo" id="pseudo" placeholder="Username" required autofocus pattern="^[a-zA-Z0-9Øø_]{3,24}$">
             <input type="password" name="pwd" id="pwd" placeholder="Password" required>
             <input type="submit" name="connexion" value="Login" class="button"/>
             <input type="submit" name="inscription" value="Sign in" class="button"/>
