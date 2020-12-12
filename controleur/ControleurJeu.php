@@ -23,8 +23,8 @@ class ControleurJeu
         $id = $this->gameDAO->getId($_SESSION["pseudo"]);
         $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
         $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
-        $_SESSION["Games"] = $this->gameDAO->getGames($id);
-        $_SESSION["wonGames"] = $this->gameDAO->getWinGames($id);
+        $_SESSION["Games"] = $this->gameDAO->getGames($pseudo);
+        $_SESSION["wonGames"] = $this->gameDAO->getWinGames($pseudo);
         $games = null;
         $won = null;
         for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
