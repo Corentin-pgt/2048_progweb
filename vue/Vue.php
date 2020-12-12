@@ -398,7 +398,9 @@ class Vue
                         </div>
                     </div>
                     <div class="right">
-                        <h1>Perdu !</h1>
+                        <h1><?php
+                            echo($score < 2048 ? 'Défaite !' : 'Victoire !');
+                            ?></h1>
                         <div class="stats">
                             <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
                             <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
