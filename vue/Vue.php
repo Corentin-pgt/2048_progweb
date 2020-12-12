@@ -65,6 +65,7 @@ class Vue
         }
         $score = $_SESSION["score"];
         $bestScore = $_SESSION["bestScore"];
+        $rank = $_SESSION["rank"];
         ?>
         <div class="wrapper">
             <div class="content">
@@ -75,12 +76,9 @@ class Vue
                             <p><strong><i class="fas fa-user"></i> : </strong><?php echo($pseudo) ?></p>
                         </div>
                         <div class="infoscore">
-                            <div class="score">
-                                <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
-                            </div>
-                            <div class="bestScore">
-                                <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
-                            </div>
+                            <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
+                            <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
+                            <p><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
                         </div>
                     </div>
                 </div>
@@ -162,10 +160,7 @@ class Vue
                 </div>
             </div>
             <div class="leaderboard">
-                <h1>
-                    <i class="fas fa-trophy"></i>
-                    Leaderboard
-                </h1>
+                <h1><i class="fas fa-trophy"></i> Leaderboard</h1>
                 <ol style="list-style: none;">
                     <li>
                         <mark><?php

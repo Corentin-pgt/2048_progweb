@@ -28,6 +28,14 @@ class GameDAO
         echo $result;
     }
 
+    public function getPosition($pseudo){
+        $req = $this->db->prepare("select count(pseudo)+1 as rank from (select pseudo, max(score) as bestScore from PARTIES GROUP BY pseudo ORDER BY bestScore) where bestScore > (select max(score) from PARTIES where pseudo=?)");
+        $req->bindParam(1, $pseudo);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        return $result != null ? $result["rank"] : 0;
+    }
+
     public function getLeaderboard($number)
     {
         $req = $this->db->prepare("select pseudo, max(score) as bestScore from PARTIES GROUP BY pseudo ORDER BY bestScore DESC LIMIT 0,?");

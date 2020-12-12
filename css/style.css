@@ -150,22 +150,19 @@ span {
     display: flex;
     justify-content: space-between;
     margin-left: 33px;
+    margin-right: 33px;
     margin-bottom: 15px;
 }
 .info {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 400px;
+    width: 1000px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
     font-size: 25px;
-}
-
-.pseudo {
-    margin: 0;
 }
 .pseudo p {
     margin: 0;
@@ -173,23 +170,11 @@ span {
 
 .infoscore {
     display: flex;
-    margin: 0;
+    justify-content: space-between;
 }
-.score {
+.infoscore p {
     margin: 0;
-    margin-right: 50px;
     margin-left: -3px;
-    width: 150px;
-}
-.score p {
-    margin: 0;
-}
-.bestScore {
-    margin: 0;
-    width: 150px;
-}
-.bestScore p {
-    margin: 0;
 }
 
 .logout {

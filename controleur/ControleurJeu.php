@@ -21,6 +21,7 @@ class ControleurJeu
         $_SESSION["leaderboard"] = $leaderboard;
         $id = $this->gameDAO->getId($_SESSION["pseudo"]);
         $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
+        $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
         $_SESSION["lostGames"] = $this->gameDAO->getLostGames($id);
         $_SESSION["wonGames"] = $this->gameDAO->getWinGames($id);
         $lost = null;
@@ -54,6 +55,8 @@ class ControleurJeu
             $this->gameDAO->insert($game);
             $_SESSION["grille"] = $grille;
             $_SESSION["score"] = "0";
+            $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
+            $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
             setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
             setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
@@ -161,6 +164,7 @@ class ControleurJeu
                     $score = $this->gameDAO->getScore($id);
                     $_SESSION["score"] = $score;
                     $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
+                    $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
                     $leaderboard = $this->gameDAO->getLeaderboard(10);
                     for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
                         $lost[$cpt] = $this->gameDAO->getLostGames($leaderboard[$cpt][0]);
@@ -179,6 +183,7 @@ class ControleurJeu
                 $this->gameDAO->setScore($id, $score_precedent);
                 $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(10);
                 $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
+                $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
                 setcookie("grille", json_encode($grille_precedente), time() + 365 * 24 * 3600);
                 setcookie("score", $score_precedent, time() + 365 * 24 * 3600);
                 setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
