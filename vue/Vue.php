@@ -391,9 +391,10 @@ class Vue
                 <div class="game-end">
                     <div class="left">
                         <img src="assets/icon.svg">
-                        <p>CocØ</p>
+                        <p><?php echo($pseudo) ?></p>
                         <div class="winrate">
-                            <p><strong>W / P :</strong> 12 / 24</p>
+                            <p><strong><i class="fas fa-medal"></i> / <i class="fas fa-gamepad"></i>
+                                    :</strong> <?php echo(10) ?> / <?php echo(10) ?></p>
                         </div>
                     </div>
                     <div class="right">
@@ -413,7 +414,8 @@ class Vue
                             </div>
                             <div class="reset-endgame">
                                 <form action="index.php" method="GET">
-                                    <button name="game-end-recommencer" value="true">NEW <i class="fas fa-sync-alt"></i></button>
+                                    <button name="game-end-recommencer" value="true">NEW <i class="fas fa-sync-alt"></i>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -426,7 +428,7 @@ class Vue
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
-                            <p class="top-pseudo">CocØ</p>
+                            <p class="top-pseudo"><?php echo($pseudo) ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
