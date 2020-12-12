@@ -54,7 +54,13 @@ class ControleurAuthentification
     function recommencer()
     {
         $gameDAO = new GameDAO();
-        $id = $gameDAO->getId($_SESSION["pseudo"]);
+        $pseudo = $_SESSION["pseudo"];
+        $id = $gameDAO->getId($pseudo);
+        setcookie($pseudo."grille", "", time() - 3600);
+        setcookie($pseudo."score", "", time() - 3600);
+        setcookie($pseudo."grille_precedente", "", time() - 3600);
+        setcookie($pseudo."score_precedent", "", time() - 3600);
+        setcookie($pseudo."precedent", "", time() - 3600);
         //On change l'attribue "gagne" à 1 si la partie est perdue, 2 si elle est gagnée
         $gameDAO->getScore($id) < "2048" ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
         $this->vue->resultat();
