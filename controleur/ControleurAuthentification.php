@@ -55,7 +55,7 @@ class ControleurAuthentification
     {
         $gameDAO = new GameDAO();
         $id = $gameDAO->getId($_SESSION["pseudo"]);
-        //On attribue 1 à la partie si elle est perdue, 2 si elle est gagnée
+        //On change l'attribue "gagne" à 1 si la partie est perdue, 2 si elle est gagnée
         $gameDAO->getScore($id) < "2048" ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
         $this->vue->resultat();
     }

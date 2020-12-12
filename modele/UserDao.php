@@ -14,6 +14,7 @@ class UserDao
         $this->connexion = SqliteConnexion::getInstance()->getConnexion();
     }
 
+    //retourne si le joueur existe ou non
     public function exists(string $pseudo): bool
     {
         try {
@@ -28,6 +29,7 @@ class UserDao
         }
     }
 
+    //retourne si le mot de passe est correct
     public function verifierMdp(string $pseudo, string $pwd): bool
     {
         try {
@@ -42,6 +44,7 @@ class UserDao
         }
     }
 
+    //créer un joueur
     public function add(string $pseudo, string $pwd): void
     {
         $req = $this->connexion->prepare("INSERT INTO JOUEURS(pseudo, password) VALUES (:pseudo, :password)");

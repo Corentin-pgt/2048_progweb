@@ -72,6 +72,7 @@ class ControleurJeu
 
         //si une partie est en cours
         else {
+            //on stocke l'ancienne grille et l'ancien score
             $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
             $score_precedent = $_COOKIE["score_precedent"];
             if (!isset($_GET["precedent"]) || $_GET["precedent"] != true) {
@@ -191,7 +192,9 @@ class ControleurJeu
                     setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
                     $this->vue->game();
                 }
-            } else {
+            }
+            //coup précédent
+            else {
                 $_SESSION["grille"] = $grille_precedente;
                 $_SESSION["score"] = $score_precedent;
                 $this->gameDAO->setScore($id, $score_precedent);
