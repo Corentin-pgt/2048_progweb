@@ -355,11 +355,18 @@ class Vue
         ?>
         <!DOCTYPE html>
         <html>
+        <?php
+        $pseudo = $_SESSION["pseudo"];
+        $score = $_SESSION["score"];
+        $bestScore = $_SESSION["bestScore"];
+        $rank = $_SESSION["rank"];
+        ?>
         <head>
             <meta charset="utf-8">
             <title>2048: Résultats </title>
             <link rel="icon" href="assets/icon.png">
             <link rel="stylesheet" content="text/css" href="css/style.css">
+            <link rel="stylesheet" content="text/css" href="css/game-end.css">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
                   integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
                   crossorigin="anonymous">
@@ -367,27 +374,102 @@ class Vue
             <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
         </head>
         <body>
-        <div class="animation-wrapper">
-            <div class="particle particle-1"></div>
-            <div class="particle particle-2"></div>
-            <div class="particle particle-3"></div>
-            <div class="particle particle-4"></div>
-        </div>
-        <div class="cards">
-            <div class="player1">
+        <div class="game-end-content">
+            <div class="animation-wrapper">
+                <div class="particle particle-1"></div>
+                <div class="particle particle-2"></div>
+                <div class="particle particle-3"></div>
+                <div class="particle particle-4"></div>
+            </div>
+            <div class="game-end-container">
+                <div class="game-end">
+                    <div class="left">
+                        <img src="assets/icon.svg">
+                        <p>CocØ</p>
+                        <div class="winrate">
+                            <p><strong>W / P :</strong> 12 / 24</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <h1>Perdu !</h1>
+                        <div class="stats">
+                            <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
+                            <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
+                            <p><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
+                        </div>
+                        <div class="buttons">
+                            <div class="logout-endgame">
+                                <form action="index.php" method="GET">
+                                    <button name="game-end-deconnexion" value="true">
+                                        QUIT <i class="fas fa-sign-out-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="reset-endgame">
+                                <form action="index.php" method="GET">
+                                    <button name="game-end-recommencer" value="true">NEW <i class="fas fa-sync-alt"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-            <div class="player2">
-
-            </div>
-            <div class="player3">
-
-            </div>
-            <div class="player4">
-
-            </div>
-            <div class="player5">
-
+            <div class="player-cards">
+                <div class="player-row">
+                    <div class="player-card">
+                        <div class="top">
+                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
+                            <p class="top-pseudo">CocØ</p>
+                        </div>
+                        <div class="player-stats">
+                            <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
+                            <div class="player-winrate">
+                                <p><i class="fas fa-medal"></i> : 12</p>
+                                <p><i class="fas fa-gamepad"></i> : 24</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="player-card">
+                        <div class="top">
+                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
+                            <p class="top-pseudo">CocØ</p>
+                        </div>
+                        <div class="player-stats">
+                            <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
+                            <div class="player-winrate">
+                                <p><i class="fas fa-medal"></i> : 12</p>
+                                <p><i class="fas fa-gamepad"></i> : 24</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="player-card">
+                        <div class="top">
+                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
+                            <p class="top-pseudo">CocØ</p>
+                        </div>
+                        <div class="player-stats">
+                            <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
+                            <div class="player-winrate">
+                                <p><i class="fas fa-medal"></i> : 12</p>
+                                <p><i class="fas fa-gamepad"></i> : 24</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="player-card">
+                        <div class="top">
+                            <p class="position"><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
+                            <p class="top-pseudo">CocØ</p>
+                        </div>
+                        <div class="player-stats">
+                            <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
+                            <div class="player-winrate">
+                                <p><i class="fas fa-medal"></i> : 12</p>
+                                <p><i class="fas fa-gamepad"></i> : 24</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         </body>

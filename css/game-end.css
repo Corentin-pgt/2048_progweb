@@ -1,0 +1,116 @@
+.game-end-content {
+    overflow: auto;
+}
+
+.game-end-container {
+    display: grid;
+    place-content: center;
+    margin-top: 2em;
+}
+
+.game-end {
+    box-shadow: 5px 10px 10px rgba(52, 52, 52, 0.2);
+    background: white;
+    padding: 2em;
+    border-radius: 1em;
+    display: flex;
+}
+
+.right {
+    display: inline;
+    margin: 1em 2em;
+}
+
+.stats {
+    display: flex;
+    margin: 2em;
+}
+
+.stats p {
+    margin: 0 1em;
+}
+
+.right h1 {
+    text-align: center;
+    margin: .3em 0;
+}
+
+.game-end img {
+    width: 120px;
+    border-radius: 20px;
+}
+
+.game-end p {
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.animation-wrapper {
+    z-index: -100;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.winrate {
+    font-size: .7em;
+}
+
+.player-cards {
+    display: grid;
+    place-content: center;
+    margin: 3em 0;
+}
+
+.player-row {
+    display: flex;
+}
+
+.player-card {
+    background: white;
+    margin: 1em 2em;
+    padding: 1em 3em;
+    text-align: left;
+    border-radius: 20px;
+    font-size: 1.3em;
+}
+
+.player-stats {
+    font-size: 1.2em;
+}
+
+.position {
+    color: #f24353;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.top {
+    display: flex;
+    position: relative;
+}
+
+.top::before {
+    position: absolute;
+    top: 85%;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 5px;
+    background: black;
+}
+
+.top-pseudo {
+    font-size: 1.1em;
+    margin-left: .8em;
+}
+
+.player-winrate {
+    display: flex;
+}
+
+.player-winrate p {
+    margin-right: 1em;
+}
