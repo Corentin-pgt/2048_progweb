@@ -16,6 +16,7 @@ class ControleurJeu
 
     function play(string $pseudo, string $direction)
     {
+        //on définit toutes les variables de session
         $_SESSION["pseudo"] = $pseudo;
         $leaderboard = $this->gameDAO->getLeaderboard(10);
         $_SESSION["leaderboard"] = $leaderboard;
@@ -33,6 +34,8 @@ class ControleurJeu
         }
         $_SESSION["lostGamesOthers"] = $lost;
         $_SESSION["wonGamesOthers"] = $won;
+
+        //création d'une partie si il y en a pas en cours
         if ($id == 0) {
             $grille = array(
                 array(0, 0, 0, 0),
@@ -40,6 +43,7 @@ class ControleurJeu
                 array(0, 0, 0, 0),
                 array(0, 0, 0, 0)
             );
+            //initialisation des deux premières cases
             try {
                 $row_random1 = random_int(0, 3);
                 $col_random1 = random_int(0, 3);
@@ -57,13 +61,17 @@ class ControleurJeu
             $_SESSION["score"] = "0";
             $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
             $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
+            //les cookies servent de stockage si le joueur se déconnecte
             setcookie("grille", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
             setcookie("score", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("grille_precedente", json_encode($_SESSION["grille"]), time() + 365 * 24 * 3600);
             setcookie("score_precedent", $_SESSION["score"], time() + 365 * 24 * 3600);
             setcookie("precedent", false, time() + 365 * 24 * 3600);
             $this->vue->game();
-        } else {
+        }
+
+        //si une partie est en cours
+        else {
             $grille_precedente = json_decode($_COOKIE["grille_precedente"], true);
             $score_precedent = $_COOKIE["score_precedent"];
             if (!isset($_GET["precedent"]) || $_GET["precedent"] != true) {
@@ -75,7 +83,7 @@ class ControleurJeu
                     $this->vue->game();
                 } else {
                     $l = 0;
-
+                    //déplacement et additionnement des cases
                     switch ($direction) {
                         case "haut":
                             $k1 = $this->retasseHaut($_SESSION["grille"], 1);
@@ -110,6 +118,7 @@ class ControleurJeu
                             $l = $k1 + $k2 + $k3;
                             break;
                     }
+                    //apparition d'une cellule à un endroit libre aléatoire si l'action a provoqaué au moins un déplacement ou un additionnement
                     $dispo = null;
                     if ($l > 0) {
                         $cpt = 0;
@@ -125,6 +134,7 @@ class ControleurJeu
                         try {
                             $cell_random = random_int(0, sizeof($dispo) - 1);
                             $value_random = random_int(1, 2);
+                            //conservation de l'emplacement et de la valeur de la cellule si le joueur fait un coup précédent suivi d'une même direction
                             if (isset($_COOKIE["precedent"]) && $_COOKIE["precedent"]) {
                                 $_SESSION["grille"][$dispo[$_COOKIE["cell_random"]][0]][$dispo[$_COOKIE["cell_random"]][1]] = $_COOKIE["value_random"] * 2;
                                 setcookie("precedent", false, time() + 365 * 24 * 3600);
@@ -135,6 +145,7 @@ class ControleurJeu
                             }
                         } catch (Exception $e) {
                         }
+                        //vérification que la partie est terminé après avoir joué
                         if (sizeof($dispo) - 1 == 0) {
 
                             $h1 = $this->retasseHaut($_SESSION["grille"], 0);
@@ -156,7 +167,9 @@ class ControleurJeu
                                 exit(0);
                             }
                         }
-                    } else {
+                    }
+                    //si le coup n'a pas eu d'effet on conserve la grille et le score précédent pour un éventuel coup précédent
+                    else {
                         setcookie("grille_precedente", json_encode($grille_precedente), time() + 365 * 24 * 3600);
                         setcookie("score_precedent", $score_precedent, time() + 365 * 24 * 3600);
                     }

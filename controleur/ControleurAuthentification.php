@@ -23,20 +23,26 @@ class ControleurAuthentification
     function connexion(string $pseudo, string $pwd)
     {
         $userDAO = new UserDao();
+        //joueur authentifié
         if ($userDAO->exists($pseudo) && $userDAO->verifierMdp($pseudo, $pwd)) {
             $ctrlJeu = new ControleurJeu();
             $ctrlJeu->play($pseudo, "rien");
-        } else $this->vue->demandePseudo();
+        }
+        //joueur non authentifié
+        else $this->vue->demandePseudo();
     }
 
     function inscription(string $pseudo, string $pwd)
     {
         $userDAO = new UserDao();
+        //le joueur peut s'inscrire
         if (!$userDAO->exists($pseudo)) {
             $userDAO->add($pseudo, password_hash($pwd, PASSWORD_DEFAULT));
             $ctrlJeu = new ControleurJeu();
             $ctrlJeu->play($pseudo, "rien");
-        } else $this->vue->demandePseudo();
+        }
+        //le joueur existe déjà
+        else $this->vue->demandePseudo();
     }
 
     function deconnexion()
@@ -49,7 +55,8 @@ class ControleurAuthentification
     {
         $gameDAO = new GameDAO();
         $id = $gameDAO->getId($_SESSION["pseudo"]);
+        //On attribue 1 à la partie si elle est perdue, 2 si elle est gagnée
         $gameDAO->getScore($id) < "2048" ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
-        header("Location: index.php");
+        $this->vue->resultat();
     }
 }

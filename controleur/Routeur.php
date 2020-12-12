@@ -16,17 +16,28 @@ class Routeur
 
     public function routerRequete()
     {
+        //bouton deconnexion
         if (isset($_GET["deconnexion"]) && $_GET["deconnexion"] == true) {
             $this->ctrlAuthentification->deconnexion();
-        } else if (isset($_GET["recommencer"]) && $_GET["recommencer"] == true) {
+        }
+        //bouton recommencer une partie
+        else if (isset($_GET["recommencer"]) && $_GET["recommencer"] == true) {
             $this->ctrlAuthentification->recommencer();
-        } else if (isset($_SESSION["pseudo"])) {
+        }
+        //si le joueur est connecté il continue de jouer
+        else if (isset($_SESSION["pseudo"])) {
             $this->ctrlJeu->play($_SESSION["pseudo"], (isset($_GET["direction"])) ? $_GET["direction"] : "rien");
-        } else if (isset($_POST["connexion"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {
+        }
+        //connexion
+        else if (isset($_POST["connexion"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {
             $this->ctrlAuthentification->connexion($_POST["pseudo"], $_POST["pwd"]);
-        } else if (isset($_POST["inscription"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {
+        }
+        //inscription
+        else if (isset($_POST["inscription"], $_POST["pseudo"], $_POST["pwd"]) && !empty($_POST["pseudo"]) && !empty($_POST["pwd"])) {
             $this->ctrlAuthentification->inscription($_POST["pseudo"], $_POST["pwd"]);
-        } else {
+        }
+        //sinon afficher fenêtre de connexion
+        else {
             $this->ctrlAuthentification->accueil();
         }
     }
