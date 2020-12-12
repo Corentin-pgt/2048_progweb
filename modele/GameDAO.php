@@ -97,8 +97,8 @@ class GameDAO
         $statement->execute();
     }
 
-    public function getLostGames($pseudo){
-        $statement = $this->db->prepare("select count(*) from PARTIES where pseudo=? and gagne=1");
+    public function getGames($pseudo){
+        $statement = $this->db->prepare("select count(*) from PARTIES where pseudo=?");
         $statement->bindParam(1, $pseudo);
         $statement->execute();
         $result = $statement->fetch();

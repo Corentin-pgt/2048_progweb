@@ -23,16 +23,16 @@ class ControleurJeu
         $id = $this->gameDAO->getId($_SESSION["pseudo"]);
         $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
         $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
-        $_SESSION["lostGames"] = $this->gameDAO->getLostGames($id);
+        $_SESSION["Games"] = $this->gameDAO->getGames($id);
         $_SESSION["wonGames"] = $this->gameDAO->getWinGames($id);
         $lost = null;
         $won = null;
         for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
-            $lost[$cpt] = $this->gameDAO->getLostGames($leaderboard[$cpt][0]);
+            $lost[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
             $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
             if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
         }
-        $_SESSION["lostGamesOthers"] = $lost;
+        $_SESSION["GamesOthers"] = $lost;
         $_SESSION["wonGamesOthers"] = $won;
 
         //création d'une partie si il y en a pas en cours
