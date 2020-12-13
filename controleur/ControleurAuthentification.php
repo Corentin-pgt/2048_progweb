@@ -62,7 +62,14 @@ class ControleurAuthentification
         setcookie($pseudo."score_precedent", "", time() - 3600);
         setcookie($pseudo."precedent", "", time() - 3600);
         //On change l'attribue "gagne" à 1 si la partie est perdue, 2 si elle est gagnée
-        $gameDAO->getScore($id) < "2048" ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
+        $grille = $_SESSION["grille"];
+        $gagne = false;
+        for ($i=0; $i<4; $i++){
+            for ($j=0; $j<4; $j++){
+                if($grille[$i][$j] >= 2048) $gagne=true;
+            }
+        }
+        $gagne == false ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
         header("Location: index.php");
     }
 }

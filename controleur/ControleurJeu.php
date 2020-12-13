@@ -30,7 +30,6 @@ class ControleurJeu
         for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
             $games[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
             $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
-            if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
         }
         $_SESSION["GamesOthers"] = $games;
         $_SESSION["wonGamesOthers"] = $won;
@@ -166,7 +165,14 @@ class ControleurJeu
                                 setcookie($pseudo . "grille_precedente", "", time() - 3600);
                                 setcookie($pseudo . "score_precedent", "", time() - 3600);
                                 setcookie($pseudo . "precedent", "", time() - 3600);
-                                $this->gameDAO->getScore($id) < "2048" ? $this->gameDAO->setEtat(1, $id) : $this->gameDAO->setEtat(2, $id);
+                                $grille = $_SESSION["grille"];
+                                $gagne = false;
+                                for ($i=0; $i<4; $i++){
+                                    for ($j=0; $j<4; $j++){
+                                        if($grille[$i][$j] >= 2048) $gagne=true;
+                                    }
+                                }
+                                $gagne == false ? $this->gameDAO->setEtat(1, $id) : $this->gameDAO->setEtat(2, $id);
                                 $this->vue->resultat();
                                 exit(0);
                             }
@@ -186,7 +192,6 @@ class ControleurJeu
                     for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
                         $games[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
                         $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
-                        if ($this->gameDAO->getScore($this->gameDAO->getId($leaderboard[$cpt][0])) >= 2048) $won[$cpt]++;
                     }
                     $_SESSION["leaderboard"] = $leaderboard;
                     $_SESSION["GamesOthers"] = $games;
