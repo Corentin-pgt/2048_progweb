@@ -23,6 +23,7 @@ class ControleurJeu
         $id = $this->gameDAO->getId($_SESSION["pseudo"]);
         $_SESSION["bestScore"] = $this->gameDAO->getBestScore($pseudo);
         $_SESSION["rank"] = $this->gameDAO->getPosition($pseudo);
+        $_SESSION["nbPlayers"] = $this->gameDAO->getNbPlayers();
         $_SESSION["Games"] = $this->gameDAO->getGames($pseudo);
         $_SESSION["wonGames"] = $this->gameDAO->getWinGames($pseudo);
         $games = null;
@@ -173,6 +174,7 @@ class ControleurJeu
                                     }
                                 }
                                 $gagne == false ? $this->gameDAO->setEtat(1, $id) : $this->gameDAO->setEtat(2, $id);
+                                $_SESSION["gagne"] = $gagne;
                                 $this->vue->resultat();
                                 exit(0);
                             }

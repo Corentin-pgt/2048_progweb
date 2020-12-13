@@ -69,6 +69,7 @@ class Vue
         $score = $_SESSION["score"];
         $bestScore = $_SESSION["bestScore"];
         $rank = $_SESSION["rank"];
+        $nbPlayers = $_SESSION["nbPlayers"];
         ?>
         <div class="wrapper">
             <div class="content">
@@ -81,7 +82,7 @@ class Vue
                         <div class="infoscore">
                             <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
                             <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
-                            <p><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
+                            <p><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank." / ".$nbPlayers) ?></p>
                         </div>
                     </div>
                 </div>
@@ -364,6 +365,7 @@ class Vue
         <?php
         $pseudo = $_SESSION["pseudo"];
         $score = $_SESSION["score"];
+        $gagne = $_SESSION["gagne"];
         $bestScore = $_SESSION["bestScore"];
         $rank = $_SESSION["rank"];
         ?>
@@ -400,7 +402,7 @@ class Vue
                     </div>
                     <div class="right">
                         <h1><?php
-                            echo($score < 2048 ? 'Défaite !' : 'Victoire !');
+                            echo($gagne == false ? 'Défaite !' : 'Victoire !');
                             ?></h1>
                         <div class="stats">
                             <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>

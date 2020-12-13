@@ -29,6 +29,12 @@ class GameDAO
         return $result != null ? $result["rank"] : 0;
     }
 
+    public function getNbPlayers(){
+        $req = $this->db->query("select count(pseudo) as rank from (select pseudo, max(score) as bestScore from PARTIES GROUP BY pseudo ORDER BY bestScore)");
+        $result = $req->fetch();
+        return $result[0];
+    }
+
     //retourne le pseudo et le meilleur score des $number premiers joueurs
     public function getLeaderboard($number)
     {
