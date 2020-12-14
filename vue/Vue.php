@@ -368,6 +368,7 @@ class Vue
         $gagne = $_SESSION["gagne"];
         $bestScore = $_SESSION["bestScore"];
         $rank = $_SESSION["rank"];
+        $nbPlayers = $_SESSION["nbPlayers"];
         ?>
         <head>
             <meta charset="utf-8">
@@ -407,7 +408,7 @@ class Vue
                         <div class="stats">
                             <p><strong><i class="fas fa-star"></i> : </strong><?php echo($score) ?></p>
                             <p><strong><i class="fas fa-crown"></i> : </strong><?php echo($bestScore) ?></p>
-                            <p><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank) ?></p>
+                            <p><strong><i class="fas fa-hashtag"></i> </strong><?php echo($rank." / ".$nbPlayers) ?></p>
                         </div>
                         <div class="buttons">
                             <div class="logout-endgame">
