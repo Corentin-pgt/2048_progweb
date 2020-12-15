@@ -70,8 +70,6 @@ class ControleurAuthentification
             }
         }
         $gagne == false ? $gameDAO->setEtat(1, $id) : $gameDAO->setEtat(2, $id);
-//        header("Location: index.php");
-        $_SESSION["gagne"] = $gagne;
-        $this->vue->resultat();
+        header("Location: index.php");
     }
 }
