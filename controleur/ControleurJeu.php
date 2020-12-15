@@ -160,7 +160,8 @@ class ControleurJeu
                             $d2 = $this->additionneDroite($_SESSION["grille"], 0);
                             $d3 = $this->retasseDroite($_SESSION["grille"], 0);
                             if ($h1 + $h2 + $h3 + $g1 + $g2 + $g3 + $b1 + $b2 + $b3 + $d1 + $d2 + $d3 == 0) {
-                                $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(20);
+                                $leaderboard = $this->gameDAO->getLeaderboard(20);
+                                $_SESSION["leaderboard"] = $leaderboard;
                                 for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
                                     $games[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
                                     $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
