@@ -683,7 +683,7 @@ class Vue
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][17][17]) ? $_SESSION['leaderboard'][17][17] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][17][1]) ? $_SESSION['leaderboard'][17][1] : "") ?></p>
                             <div class="player-winrate">
                                 <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][17]) ? $_SESSION['wonGamesOthers'][17] : "") ?></p>
                                 <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][17]) ? $_SESSION['GamesOthers'][17] : "") ?></p>
