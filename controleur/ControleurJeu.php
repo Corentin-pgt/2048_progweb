@@ -161,6 +161,12 @@ class ControleurJeu
                             $d3 = $this->retasseDroite($_SESSION["grille"], 0);
                             if ($h1 + $h2 + $h3 + $g1 + $g2 + $g3 + $b1 + $b2 + $b3 + $d1 + $d2 + $d3 == 0) {
                                 $_SESSION["leaderboard"] = $this->gameDAO->getLeaderboard(20);
+                                for ($cpt = 0; $cpt < sizeof($leaderboard); $cpt++) {
+                                    $games[$cpt] = $this->gameDAO->getGames($leaderboard[$cpt][0]);
+                                    $won[$cpt] = $this->gameDAO->getWinGames($leaderboard[$cpt][0]);
+                                }
+                                $_SESSION["GamesOthers"] = $games;
+                                $_SESSION["wonGamesOthers"] = $won;
                                 setcookie($pseudo . "grille", "", time() - 3600);
                                 setcookie($pseudo . "score", "", time() - 3600);
                                 setcookie($pseudo . "grille_precedente", "", time() - 3600);
