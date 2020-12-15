@@ -374,7 +374,6 @@ class Vue
             <meta charset="utf-8">
             <title>2048: Résultats </title>
             <link rel="icon" href="assets/icon.png">
-<!--            <link rel="stylesheet" content="text/css" href="css/style.css">-->
             <link rel="stylesheet" content="text/css" href="css/game-end.css">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
                   integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
@@ -492,56 +491,56 @@ class Vue
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 5</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][0][0]) ? $_SESSION['leaderboard'][0][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][4][0]) ? $_SESSION['leaderboard'][4][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][0][1]) ? $_SESSION['leaderboard'][0][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][4][1]) ? $_SESSION['leaderboard'][4][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][0]) ? $_SESSION['wonGamesOthers'][0] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][0]) ? $_SESSION['GamesOthers'][0] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][4]) ? $_SESSION['wonGamesOthers'][4] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][4]) ? $_SESSION['GamesOthers'][4] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 6</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][1][0]) ? $_SESSION['leaderboard'][1][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][5][0]) ? $_SESSION['leaderboard'][5][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][1][1]) ? $_SESSION['leaderboard'][1][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][5][1]) ? $_SESSION['leaderboard'][5][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][1]) ? $_SESSION['wonGamesOthers'][1] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][1]) ? $_SESSION['GamesOthers'][1] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][5]) ? $_SESSION['wonGamesOthers'][5] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][5]) ? $_SESSION['GamesOthers'][5] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 7</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][2][0]) ? $_SESSION['leaderboard'][2][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][6][0]) ? $_SESSION['leaderboard'][6][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][2][1]) ? $_SESSION['leaderboard'][2][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][6][1]) ? $_SESSION['leaderboard'][6][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][2]) ? $_SESSION['wonGamesOthers'][2] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][2]) ? $_SESSION['GamesOthers'][2] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][6]) ? $_SESSION['wonGamesOthers'][6] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][6]) ? $_SESSION['GamesOthers'][6] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 8</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][3][0]) ? $_SESSION['leaderboard'][3][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][7][0]) ? $_SESSION['leaderboard'][7][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][3][1]) ? $_SESSION['leaderboard'][3][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][7][1]) ? $_SESSION['leaderboard'][7][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][3]) ? $_SESSION['wonGamesOthers'][3] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][3]) ? $_SESSION['GamesOthers'][3] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][7]) ? $_SESSION['wonGamesOthers'][7] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][7]) ? $_SESSION['GamesOthers'][7] : "") ?></p>
                             </div>
                         </div>
                     </div>
@@ -550,56 +549,56 @@ class Vue
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 9</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][0][0]) ? $_SESSION['leaderboard'][0][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][8][0]) ? $_SESSION['leaderboard'][8][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][0][1]) ? $_SESSION['leaderboard'][0][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][8][1]) ? $_SESSION['leaderboard'][8][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][0]) ? $_SESSION['wonGamesOthers'][0] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][0]) ? $_SESSION['GamesOthers'][0] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][8]) ? $_SESSION['wonGamesOthers'][8] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][8]) ? $_SESSION['GamesOthers'][8] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 10</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][1][0]) ? $_SESSION['leaderboard'][1][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][9][0]) ? $_SESSION['leaderboard'][9][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][1][1]) ? $_SESSION['leaderboard'][1][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][9][9]) ? $_SESSION['leaderboard'][9][9] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][1]) ? $_SESSION['wonGamesOthers'][1] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][1]) ? $_SESSION['GamesOthers'][1] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][9]) ? $_SESSION['wonGamesOthers'][9] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][9]) ? $_SESSION['GamesOthers'][9] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 11</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][2][0]) ? $_SESSION['leaderboard'][2][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][10][0]) ? $_SESSION['leaderboard'][10][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][2][1]) ? $_SESSION['leaderboard'][2][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][10][1]) ? $_SESSION['leaderboard'][10][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][2]) ? $_SESSION['wonGamesOthers'][2] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][2]) ? $_SESSION['GamesOthers'][2] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][10]) ? $_SESSION['wonGamesOthers'][10] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][10]) ? $_SESSION['GamesOthers'][10] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 12</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][3][0]) ? $_SESSION['leaderboard'][3][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][11][0]) ? $_SESSION['leaderboard'][11][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][3][1]) ? $_SESSION['leaderboard'][3][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][11][1]) ? $_SESSION['leaderboard'][11][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][3]) ? $_SESSION['wonGamesOthers'][3] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][3]) ? $_SESSION['GamesOthers'][3] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][11]) ? $_SESSION['wonGamesOthers'][11] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][11]) ? $_SESSION['GamesOthers'][11] : "") ?></p>
                             </div>
                         </div>
                     </div>
@@ -608,56 +607,56 @@ class Vue
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 13</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][0][0]) ? $_SESSION['leaderboard'][0][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][12][0]) ? $_SESSION['leaderboard'][12][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][0][1]) ? $_SESSION['leaderboard'][0][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][12][1]) ? $_SESSION['leaderboard'][12][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][0]) ? $_SESSION['wonGamesOthers'][0] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][0]) ? $_SESSION['GamesOthers'][0] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][12]) ? $_SESSION['wonGamesOthers'][12] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][12]) ? $_SESSION['GamesOthers'][12] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 14</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][1][0]) ? $_SESSION['leaderboard'][1][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][13][0]) ? $_SESSION['leaderboard'][13][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][1][1]) ? $_SESSION['leaderboard'][1][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][13][13]) ? $_SESSION['leaderboard'][13][13] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][1]) ? $_SESSION['wonGamesOthers'][1] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][1]) ? $_SESSION['GamesOthers'][1] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][13]) ? $_SESSION['wonGamesOthers'][13] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][13]) ? $_SESSION['GamesOthers'][13] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 15</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][2][0]) ? $_SESSION['leaderboard'][2][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][14][0]) ? $_SESSION['leaderboard'][14][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][2][1]) ? $_SESSION['leaderboard'][2][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][14][1]) ? $_SESSION['leaderboard'][14][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][2]) ? $_SESSION['wonGamesOthers'][2] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][2]) ? $_SESSION['GamesOthers'][2] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][14]) ? $_SESSION['wonGamesOthers'][14] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][14]) ? $_SESSION['GamesOthers'][14] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 16</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][3][0]) ? $_SESSION['leaderboard'][3][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][15][0]) ? $_SESSION['leaderboard'][15][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][3][1]) ? $_SESSION['leaderboard'][3][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][15][1]) ? $_SESSION['leaderboard'][15][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][3]) ? $_SESSION['wonGamesOthers'][3] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][3]) ? $_SESSION['GamesOthers'][3] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][15]) ? $_SESSION['wonGamesOthers'][15] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][15]) ? $_SESSION['GamesOthers'][15] : "") ?></p>
                             </div>
                         </div>
                     </div>
@@ -666,56 +665,56 @@ class Vue
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 17</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][0][0]) ? $_SESSION['leaderboard'][0][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][16][0]) ? $_SESSION['leaderboard'][16][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][0][1]) ? $_SESSION['leaderboard'][0][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][16][1]) ? $_SESSION['leaderboard'][16][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][0]) ? $_SESSION['wonGamesOthers'][0] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][0]) ? $_SESSION['GamesOthers'][0] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][16]) ? $_SESSION['wonGamesOthers'][16] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][16]) ? $_SESSION['GamesOthers'][16] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 18</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][1][0]) ? $_SESSION['leaderboard'][1][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][17][0]) ? $_SESSION['leaderboard'][17][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][1][1]) ? $_SESSION['leaderboard'][1][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][17][17]) ? $_SESSION['leaderboard'][17][17] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][1]) ? $_SESSION['wonGamesOthers'][1] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][1]) ? $_SESSION['GamesOthers'][1] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][17]) ? $_SESSION['wonGamesOthers'][17] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][17]) ? $_SESSION['GamesOthers'][17] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 19</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][2][0]) ? $_SESSION['leaderboard'][2][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][18][0]) ? $_SESSION['leaderboard'][18][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][2][1]) ? $_SESSION['leaderboard'][2][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][18][1]) ? $_SESSION['leaderboard'][18][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][2]) ? $_SESSION['wonGamesOthers'][2] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][2]) ? $_SESSION['GamesOthers'][2] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][18]) ? $_SESSION['wonGamesOthers'][18] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][18]) ? $_SESSION['GamesOthers'][18] : "") ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="player-card">
                         <div class="top">
                             <p class="position"><strong><i class="fas fa-hashtag"></i> </strong> 20</p>
-                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][3][0]) ? $_SESSION['leaderboard'][3][0] : "") ?></p>
+                            <p class="top-pseudo"><?php echo(isset($_SESSION['leaderboard'][19][0]) ? $_SESSION['leaderboard'][19][0] : "") ?></p>
                         </div>
                         <div class="player-stats">
                             <p><strong><i class="fas fa-crown"></i> :
-                                </strong><?php echo(isset($_SESSION['leaderboard'][3][1]) ? $_SESSION['leaderboard'][3][1] : "") ?></p>
+                                </strong><?php echo(isset($_SESSION['leaderboard'][19][1]) ? $_SESSION['leaderboard'][19][1] : "") ?></p>
                             <div class="player-winrate">
-                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][3]) ? $_SESSION['wonGamesOthers'][3] : "") ?></p>
-                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][3]) ? $_SESSION['GamesOthers'][3] : "") ?></p>
+                                <p><i class="fas fa-medal"></i> : <?php echo(isset($_SESSION['wonGamesOthers'][19]) ? $_SESSION['wonGamesOthers'][19] : "") ?></p>
+                                <p><i class="fas fa-gamepad"></i> : <?php echo(isset($_SESSION['GamesOthers'][19]) ? $_SESSION['GamesOthers'][19] : "") ?></p>
                             </div>
                         </div>
                     </div>

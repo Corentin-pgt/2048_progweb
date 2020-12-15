@@ -108,6 +108,7 @@ button:active:after {
 
 .player-row {
     display: flex;
+    justify-content: space-between;
 }
 
 .player-card {
@@ -116,6 +117,7 @@ button:active:after {
     padding: 1em 3em;
     text-align: left;
     border-radius: 20px;
+    min-width: 180px;
     font-size: 1.3em;
 }
 
